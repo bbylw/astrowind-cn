@@ -25,4 +25,11 @@ pnpm-debug.log*
 pnpm-lock.yaml
 pnpm-workspace.yaml
 
+# bun is used for local development, but package-lock.json is still the
+# lockfile consumed by CI, Docker and the deploy targets.
+bun.lock
+
+# WorkBuddy local session notes
+.workbuddy-ai/
+
 .astro

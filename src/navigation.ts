@@ -1,168 +1,93 @@
-import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import { getPermalink, getBlogPermalink, getAsset, cleanSlug } from './utils/permalinks';
+
+const repo = 'https://github.com/arthelokyo/astrowind';
 
 export const headerData = {
   links: [
     {
-      text: 'Homes',
+      text: '认识 AstroWind',
       links: [
-        {
-          text: 'SaaS',
-          href: getPermalink('/homes/saas'),
-        },
-        {
-          text: 'Startup',
-          href: getPermalink('/homes/startup'),
-        },
-        {
-          text: 'Mobile App',
-          href: getPermalink('/homes/mobile-app'),
-        },
-        {
-          text: 'Personal',
-          href: getPermalink('/homes/personal'),
-        },
+        { text: '核心特性', href: getPermalink('/#features') },
+        { text: '快速开始', href: getPermalink('/#quick-start') },
+        { text: '页面区块', href: getPermalink('/#components') },
+        { text: '项目历程', href: getPermalink('/#story') },
+        { text: '常见问题', href: getPermalink('/#faqs') },
       ],
     },
     {
-      text: 'Pages',
+      text: '中文指南',
       links: [
-        {
-          text: 'Features (Anchor Link)',
-          href: getPermalink('/#features'),
-        },
-        {
-          text: 'Services',
-          href: getPermalink('/services'),
-        },
-        {
-          text: 'Pricing',
-          href: getPermalink('/pricing'),
-        },
-        {
-          text: 'About us',
-          href: getPermalink('/about'),
-        },
-        {
-          text: 'Contact',
-          href: getPermalink('/contact'),
-        },
-        {
-          text: 'Terms',
-          href: getPermalink('/terms'),
-        },
-        {
-          text: 'Privacy policy',
-          href: getPermalink('/privacy'),
-        },
+        { text: '全部文章', href: getBlogPermalink() },
+        { text: '从零开始搭建站点', href: getPermalink('get-started-website-with-astro-tailwind-css', 'post') },
+        { text: '定制颜色、字体与 Logo', href: getPermalink('how-to-customize-astrowind-to-your-brand', 'post') },
+        { text: '模板原理拆解', href: getPermalink('astrowind-template-in-depth', 'post') },
+        { text: '用 AI 助手改造模板', href: getPermalink('build-websites-with-ai', 'post') },
+        { text: '教程分类', href: getPermalink(cleanSlug('教程'), 'category') },
       ],
     },
     {
-      text: 'Landing',
+      text: '资源',
       links: [
-        {
-          text: 'Lead Generation',
-          href: getPermalink('/landing/lead-generation'),
-        },
-        {
-          text: 'Long-form Sales',
-          href: getPermalink('/landing/sales'),
-        },
-        {
-          text: 'Click-Through',
-          href: getPermalink('/landing/click-through'),
-        },
-        {
-          text: 'Product Details (or Services)',
-          href: getPermalink('/landing/product'),
-        },
-        {
-          text: 'Coming Soon or Pre-Launch',
-          href: getPermalink('/landing/pre-launch'),
-        },
-        {
-          text: 'Subscription',
-          href: getPermalink('/landing/subscription'),
-        },
-      ],
-    },
-    {
-      text: 'Blog',
-      links: [
-        {
-          text: 'Blog List',
-          href: getBlogPermalink(),
-        },
-        {
-          text: 'Article',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
-        },
-        {
-          text: 'Article (with MDX)',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
-        },
-        {
-          text: 'Category Page',
-          href: getPermalink('tutorials', 'category'),
-        },
-        {
-          text: 'Tag Page',
-          href: getPermalink('astro', 'tag'),
-        },
+        { text: 'GitHub 仓库', href: repo },
+        { text: '官方演示站', href: 'https://astrowind.vercel.app/' },
+        { text: 'Astro 官方文档', href: 'https://docs.astro.build/' },
+        { text: 'Tailwind CSS 文档', href: 'https://tailwindcss.com/docs' },
+        { text: 'AI 技能说明（Skills）', href: `${repo}/tree/main/.agents/skills` },
       ],
     },
   ],
-  actions: [{ text: 'Download', href: 'https://github.com/arthelokyo/astrowind', target: '_blank' }],
+  actions: [{ text: '获取模板', href: repo, target: '_blank' }],
 };
 
 export const footerData = {
   links: [
     {
-      title: 'Product',
+      title: '站点',
       links: [
-        { text: 'Features', href: getPermalink('/#features') },
-        { text: 'Pricing', href: getPermalink('/pricing') },
-        { text: 'Services', href: getPermalink('/services') },
-        { text: 'Blog', href: getBlogPermalink() },
+        { text: '核心特性', href: getPermalink('/#features') },
+        { text: '快速开始', href: getPermalink('/#quick-start') },
+        { text: '常见问题', href: getPermalink('/#faqs') },
+        { text: '项目历程', href: getPermalink('/#story') },
       ],
     },
     {
-      title: 'Demos',
+      title: '中文指南',
       links: [
-        { text: 'SaaS', href: getPermalink('/homes/saas') },
-        { text: 'Startup', href: getPermalink('/homes/startup') },
-        { text: 'Mobile App', href: getPermalink('/homes/mobile-app') },
-        { text: 'Personal', href: getPermalink('/homes/personal') },
-        { text: 'Landing pages', href: getPermalink('/landing/lead-generation') },
+        { text: '文章列表', href: getBlogPermalink() },
+        { text: '从零开始搭建站点', href: getPermalink('get-started-website-with-astro-tailwind-css', 'post') },
+        { text: '定制品牌外观', href: getPermalink('how-to-customize-astrowind-to-your-brand', 'post') },
+        { text: '模板原理拆解', href: getPermalink('astrowind-template-in-depth', 'post') },
+        { text: '建站资源清单', href: getPermalink('useful-resources-to-create-websites', 'post') },
       ],
     },
     {
-      title: 'Resources',
+      title: '资源',
       links: [
-        { text: 'Documentation', href: 'https://github.com/arthelokyo/astrowind#readme' },
-        { text: 'Skills for AI agents', href: 'https://github.com/arthelokyo/astrowind/tree/main/.agents/skills' },
-        { text: 'Releases', href: 'https://github.com/arthelokyo/astrowind/releases' },
-        { text: 'Discussions', href: 'https://github.com/arthelokyo/astrowind/discussions' },
+        { text: 'GitHub 仓库', href: repo },
+        { text: '官方演示站', href: 'https://astrowind.vercel.app/' },
+        { text: 'AGENTS.md 约定', href: `${repo}/blob/main/AGENTS.md` },
+        { text: '版本发布记录', href: `${repo}/releases` },
       ],
     },
     {
-      title: 'Company',
+      title: '社区',
       links: [
-        { text: 'About', href: getPermalink('/about') },
-        { text: 'Contact', href: getPermalink('/contact') },
-        { text: 'Report an issue', href: 'https://github.com/arthelokyo/astrowind/issues' },
-        { text: 'License', href: 'https://github.com/arthelokyo/astrowind/blob/main/LICENSE.md' },
+        { text: '问题反馈', href: `${repo}/issues` },
+        { text: '讨论区', href: `${repo}/discussions` },
+        { text: '贡献指南', href: `${repo}#contributing` },
+        { text: 'MIT 许可', href: `${repo}/blob/main/LICENSE.md` },
       ],
     },
   ],
   secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
-    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    { text: '使用条款', href: getPermalink('/terms') },
+    { text: '隐私政策', href: getPermalink('/privacy') },
   ],
   socialLinks: [
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/arthelokyo/astrowind' },
+    { ariaLabel: 'RSS 订阅', icon: 'tabler:rss', href: getAsset('/rss.xml') },
+    { ariaLabel: 'GitHub 仓库', icon: 'tabler:brand-github', href: repo },
   ],
   footNote: `
-    Made by <a class="text-blue-600 underline dark:text-muted" href="https://arthelokyo.com"> Arthelokyo</a> · All rights reserved.
+    基于 <a class="text-blue-600 underline dark:text-muted" href="https://github.com/arthelokyo/astrowind">AstroWind</a> 模板构建的中文介绍站 · 非官方站点 · 原模板采用 MIT 许可。
   `,
 };

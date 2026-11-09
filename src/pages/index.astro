@@ -19,14 +19,11 @@ import { SITE, METADATA, I18N } from 'astrowind:config';
 import favIconSvg from '~/assets/favicons/favicon.svg';
 
 const metadata = {
-  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  title: 'AstroWind 中文站 — 免费开源的 Astro v7 + Tailwind CSS v4 网站模板',
   ignoreTitleTemplate: true,
 };
 
-// Structured data for the site and its publisher, built only from
-// `src/config.yaml` (`site.name`, `site.site`, `metadata.twitter.handle`), so
-// it is correct for any site made with the template. Blog posts add
-// BlogPosting on their own; the FAQs widget adds FAQPage.
+// 站点与发布者的结构化数据，全部来自 src/config.yaml
 const organizationId = `${SITE?.site}/#organization`;
 const structuredData = [
   {
@@ -35,6 +32,7 @@ const structuredData = [
     '@id': `${SITE?.site}/#website`,
     name: SITE?.name,
     url: SITE?.site,
+    description: METADATA?.description,
     inLanguage: I18N?.language,
     publisher: { '@id': organizationId },
   },
@@ -52,81 +50,74 @@ const structuredData = [
 
 <Layout metadata={metadata}>
   <StructuredData slot="head" schema={structuredData} />
-  <!-- Hero Widget ******************* -->
 
+  <!-- Hero -->
   <Hero
-    tagline="Free & open source"
+    tagline="免费 · 开源 · 生产可用"
     actions={[
       {
         variant: 'primary',
-        text: 'Get template',
+        text: '获取模板',
         href: 'https://github.com/arthelokyo/astrowind',
         target: '_blank',
         icon: 'tabler:download',
       },
-      { text: 'Learn more', href: '#features' },
+      { text: '了解特性', href: '#features' },
     ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind 模板首页示意图' }}
   >
     <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating websites with</span>
-      <span class="text-accent dark:text-white"> Astro v7</span> + Tailwind CSS
+      用 <span class="text-accent dark:text-white">Astro v7</span> + Tailwind CSS v4 搭网站的免费模板
     </Fragment>
 
     <Fragment slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro v7 +
-        Tailwind CSS v4.</span
-      >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span>
-      Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages & Blogs.
+      <span class="font-semibold">AstroWind</span> 是一套免费、可定制、可直接上线的开源模板。内置 30+ 可组合页面区块、 Markdown/MDX
+      博客、SEO 元信息、暗色模式与图片优化，适合创业团队、SaaS 官网、作品集、营销落地页与博客。
     </Fragment>
   </Hero>
 
-  <!-- SocialProof Widget ************ -->
-
+  <!-- 数据亮点 -->
   <SocialProof
     id="proof"
     classes={{ container: '!pb-14 md:!pb-20' }}
     items={[
       {
-        value: '#1',
-        label: 'most starred Astro theme',
+        value: '6.1K',
+        label: 'GitHub Star，Astro 生态最受欢迎的主题之一',
         icon: 'tabler:star-filled',
         color: 'text-amber-400',
         href: 'https://github.com/arthelokyo/astrowind',
       },
-      { value: '100', label: 'Lighthouse score', icon: 'tabler:gauge', color: 'text-emerald-500' },
-      { value: 'MIT', label: 'licensed, free to use', icon: 'tabler:license', color: 'text-sky-500' },
+      { value: '100', label: 'Lighthouse 四项满分', icon: 'tabler:gauge', color: 'text-emerald-500' },
+      { value: 'MIT', label: '许可，个人与商用皆免费', icon: 'tabler:license', color: 'text-sky-500' },
     ]}
   />
 
-  <!-- QuickStart Widget ************* -->
-
+  <!-- 快速开始 -->
   <QuickStart
     id="quick-start"
     classes={{ icon: 'bg-green-600 dark:bg-green-700' }}
-    tagline="TL;DR"
-    title="One command. That is the whole setup."
-    subtitle="For the people who scroll past the features and ask “how do I run it?”. This is how."
+    tagline="快速开始"
+    title="一条命令，就是全部初始化工作"
+    subtitle="不想先看特性？直接把模板跑起来，两分钟后你就能开始改内容。"
     commands={['npm create astro@latest -- --template arthelokyo/astrowind']}
     items={[
       {
-        title: 'Two minutes, one terminal',
+        title: '两分钟，一个终端',
         description:
-          'Answer the prompts, run <code>npm run dev</code>, open localhost:4321. The demo site is now yours to edit. The only requirement is a current Node.js.',
+          '按提示创建项目，运行 <code>npm run dev</code>，打开 localhost:4321，看到的演示站就是你自己的代码。需要 Node.js 22.22.3 或更高版本。',
         icon: 'tabler:terminal-2',
       },
       {
-        title: 'AI-ready out of the box',
+        title: '天生适配 AI 助手',
         description:
-          'An <code>AGENTS.md</code> and step-by-step skills tell Claude Code, Cursor or any coding assistant how this template works. Ask it for a page; it knows where things go.',
+          '仓库自带 <code>AGENTS.md</code> 与 16 个分步技能文档，Claude Code、Cursor、Codex 等工具能直接看懂目录约定，帮你加页面、改主题、关博客。',
         icon: 'tabler:sparkles',
       },
       {
-        title: 'Free, MIT licensed, no strings',
+        title: 'MIT 许可，没有附加条件',
         description:
-          'Use it for client work, side projects or the company site. Star the repo if it saves you an afternoon.',
+          '客户项目、个人站点、公司官网都可以用。不必保留署名，也无需付费；如果它帮你省下一个下午，去 GitHub 点个 Star 就好。',
         icon: 'tabler:license',
       },
     ]}
@@ -139,84 +130,76 @@ const structuredData = [
     </Fragment>
   </QuickStart>
 
-  <!-- Features Widget *************** -->
-
+  <!-- 核心特性 -->
   <Features
     id="features"
-    tagline="Features"
-    title="What you get with AstroWind"
-    subtitle="One of the most professional and comprehensive templates currently on the market. Most starred & forked Astro theme in 2022, 2023, 2024 and 2025."
+    tagline="核心特性"
+    title="AstroWind 给你准备了什么"
+    subtitle="一套面向生产环境的静态站点骨架：性能、SEO、内容与组件都已在模板里就位，你只需要换成自己的文案与图片。"
     items={[
       {
-        title: 'Astro + Tailwind CSS Integration',
+        title: 'Astro v7 + Tailwind CSS v4',
         description:
-          'A seamless integration between two great frameworks that offer high productivity, performance and versatility. Now powered by Tailwind CSS v4.',
+          '静态优先的 Astro 搭配 CSS-first 配置的 Tailwind v4，几乎不向浏览器发送 JavaScript，页面又快又好改。',
         icon: 'tabler:brand-tailwind',
       },
       {
-        title: 'Ready-to-use Components',
+        title: '30+ 可组合页面区块',
         description:
-          'Widgets made with Tailwind CSS v4 ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
+          'Hero、特性、Bento、价格对比、FAQ、客户评价、团队、时间线、图库等区块全部带类型定义，按需拼装即可。',
         icon: 'tabler:components',
       },
       {
-        title: 'Best Practices',
-        description:
-          'Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value.',
-        icon: 'tabler:list-check',
+        title: '开箱即用的博客',
+        description: 'Markdown / MDX 文章放在 src/data/post/，自动获得 RSS、分类、标签、相关文章、社交分享与阅读时长。',
+        icon: 'tabler:article',
       },
       {
-        title: 'Excellent Page Speed',
-        description:
-          'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
-        icon: 'tabler:rocket',
+        title: 'SEO 与结构化数据',
+        description: '按路由生成 sitemap，默认配置 OG / Twitter 卡片、robots 与 JSON-LD，PageSpeed Insights 四项满分。',
+        icon: 'tabler:seo',
       },
       {
-        title: 'Search Engine Optimization (SEO)',
-        description:
-          "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience.",
-        icon: 'tabler:arrows-right-left',
+        title: '暗色模式与图片优化',
+        description: '深浅主题、RTL、shadcn/ui 兼容的设计变量；本地图由 Sharp 优化，远程图交给 Unpic 走 CDN。',
+        icon: 'tabler:moon-stars',
       },
       {
-        title: 'Open to new ideas and contributions',
-        description:
-          'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
+        title: '为 AI 助手写好说明书',
+        description: 'AGENTS.md、CLAUDE.md 与 .agents/skills/ 把常见改造任务写成分步指南，让 AI 改代码有据可依。',
         icon: 'tabler:bulb',
       },
     ]}
   />
 
-  <!-- Content Widget **************** -->
-
+  <!-- 架构说明 -->
   <Content
     isReversed
-    tagline="Inside template"
-    title="AstroWind's Blueprint: Fun Meets Functionality!"
+    tagline="模板内部"
+    title="看懂 AstroWind 的结构，改起来才不迷路"
     items={[
       {
-        title: 'Built on top of Astro v7',
+        title: '配置集中在 config.yaml',
         description:
-          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
+          '站点名、URL、SEO、博客开关与分析都写在 src/config.yaml，由自研 Astro integration 编译成虚拟模块 astrowind:config。',
       },
       {
-        title: 'Styled using Tailwind CSS v4',
-        description:
-          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
+        title: '页面基于文件路由',
+        description: 'src/pages/ 下的 .astro 与 .md 文件自动成为路由，动态路由负责博客列表、文章、分类与标签。',
       },
       {
-        title: 'Cross-browser compatibility',
-        description:
-          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
+        title: '内容走 Content Layer',
+        description: 'src/content.config.ts 用 glob() 加载器读取 src/data/post/ 下的文章，构建时完成校验与渲染。',
       },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image',
+      alt: '团队协作开发网站',
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
-      Gain a competitive advantage by incorporating industry leading practices
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">建立在现代化基础之上</h3>
+      把约定写进代码里，让每一次改动都落在正确的地方
     </Fragment>
 
     <Fragment slot="bg">
@@ -224,170 +207,158 @@ const structuredData = [
     </Fragment>
   </Content>
 
-  <!-- Content Widget **************** -->
-
+  <!-- 定制能力 -->
   <Content
     isAfterContent
     items={[
       {
-        title: 'High level of customization',
-        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
+        title: '颜色与字体都是变量',
+        description:
+          'CustomStyles.astro 定义明暗两套 CSS 变量，tailwind.css 用 @theme 暴露设计 token，改一处即可全局换肤。',
       },
       {
-        title: 'Multiple layout possibilities',
-        description:
-          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
+        title: '多种页面版式',
+        description: '首页、落地页、博客页与 Markdown 页各有一套布局，区块组件可以任意组合成新的版式。',
       },
       {
-        title: 'Fully responsive design',
-        description:
-          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
+        title: '完全响应式',
+        description: '从手机到大屏都有一致的阅读体验，移动端菜单、图片尺寸与间距都已处理妥当。',
       },
       {
-        title: 'Integration of media',
-        description:
-          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
+        title: '媒体与嵌入内容',
+        description: '内置图片、视频、社交嵌入组件，配合 Astro 资源管线自动压缩与懒加载。',
       },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1616674282942-2835e62d612e?auto=format&fit=crop&w=1600&q=80',
-      alt: 'Printed website wireframes on a black table',
+      alt: '桌面上的网站线框图',
     }}
   >
-    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
+    <Fragment slot="content">让站点真正长成你自己的样子。</Fragment>
 
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </Content>
 
-  <!-- Content Widget **************** -->
-
+  <!-- 效率 -->
   <Content
     isReversed
     isAfterContent
     items={[
       {
-        title: 'Enhanced user engagement',
-        description:
-          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
+        title: '不必从零搭轮子',
+        description: '导航栏、页脚、面包屑、分页、标签、分享按钮这些重复工作，模板已经写好并且带类型。',
       },
       {
-        title: 'Continuous improvement',
+        title: '静态产物随处可部署',
         description:
-          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
+          'output: static 产出 dist/ 纯静态文件，Vercel、Netlify、Cloudflare Workers、nginx 容器都能直接托管。',
       },
       {
-        title: 'Time and resource efficiency',
-        description:
-          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
+        title: '持续维护的依赖',
+        description: 'v1 处于维护模式，持续接收依赖升级与问题修复，Astro 与 Tailwind 大版本更新也会跟进。',
       },
       {
-        title: 'Community support',
-        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
+        title: '社区与文档',
+        description: '1,300+ 次提交、1700+ fork，加上 16 个 AI 技能文档，遇到问题几乎总能找到参考。',
       },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Astronauts Image',
+      alt: '开发工作流示意',
     }}
   >
-    <Fragment slot="content">Designed to foster growth and success.</Fragment>
+    <Fragment slot="content">把时间留给内容，而不是脚手架。</Fragment>
 
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </Content>
 
-  <!-- Steps Widget ****************** -->
-
+  <!-- 上手步骤 -->
   <Steps
-    title="Get your dream website up and running in no time with AstroWind."
+    title="四步，把模板变成你的网站"
     items={[
       {
-        title: 'Step 1: <span class="font-medium">Download</span>',
+        title: '第 1 步：<span class="font-medium">获取模板</span>',
         description:
-          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
+          '在 GitHub 上 fork 或点击 Use this template，也可以用上面的命令直接创建项目。整个代码库立刻属于你。',
         icon: 'tabler:package',
       },
       {
-        title: 'Step 2: <span class="font-medium">Add content</span>',
+        title: '第 2 步：<span class="font-medium">替换内容</span>',
         description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
+          '改 src/config.yaml 里的站点信息与 logo，替换首页与 src/data/post/ 里的示例文字，把图片换成自己的素材。',
         icon: 'tabler:letter-case',
       },
       {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
+        title: '第 3 步：<span class="font-medium">调整外观</span>',
         description:
-          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
+          '在 CustomStyles.astro 改明暗主题颜色，在 astro.config.ts 的 fonts 配置里换字体，用现成区块重新拼装页面。',
         icon: 'tabler:paint',
       },
       {
-        title: 'Ready!',
+        title: '完成，可以上线了',
         icon: 'tabler:check',
       },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
-      alt: 'Steps image',
+      alt: '从想法到上线的步骤',
     }}
   />
 
-  <!-- Features2 Widget ************** -->
-
+  <!-- 组件目录 -->
   <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS v4"
-    tagline="Components"
+    id="components"
+    title="常用页面区块一览"
+    subtitle="每个区块都是带类型 props 的 .astro 组件，页面只是把它们的顺序和文案组合起来"
+    tagline="组件库"
     items={[
       {
-        title: 'Headers',
-        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
+        title: '导航与页脚',
+        description: '桌面下拉菜单、移动端折叠菜单、主题切换、RSS 入口与多栏页脚。',
         icon: 'flat-color-icons:template',
       },
       {
-        title: 'Heros',
-        description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
+        title: '首屏 Hero',
+        description: '标题、副标题、行动按钮与主视觉，支持多种排版变体。',
         icon: 'flat-color-icons:gallery',
       },
       {
-        title: 'Features',
-        description:
-          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
+        title: '特性与卖点',
+        description: '网格、Bento、标签页、步骤与时间线，把能力讲清楚。',
         icon: 'flat-color-icons:approval',
       },
       {
-        title: 'Content',
-        description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
+        title: '内容区块',
+        description: '图文左右分栏、引用、注释与图库，承载长篇说明。',
         icon: 'flat-color-icons:document',
       },
       {
-        title: 'Call-to-Action',
-        description:
-          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
+        title: '行动号召',
+        description: 'CTA、公告条、粘性按钮与订阅表单，把读者导向下一步。',
         icon: 'flat-color-icons:advertising',
       },
       {
-        title: 'Pricing',
-        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
+        title: '价格与对比',
+        description: '价格卡片与功能对比表，适合 SaaS 与产品页。',
         icon: 'flat-color-icons:currency-exchange',
       },
       {
-        title: 'Testimonial',
-        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
+        title: '客户评价',
+        description: '评价、社会证明、数据统计与品牌墙，建立信任感。',
         icon: 'flat-color-icons:voice-presentation',
       },
       {
-        title: 'Contact',
-        description:
-          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
+        title: '联系与团队',
+        description: '联系表单、团队介绍、项目展示与常见问题折叠面板。',
         icon: 'flat-color-icons:business-contact',
       },
       {
-        title: 'Footers',
-        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
+        title: '博客组件',
+        description: '文章卡片、列表、分页、标签、相关文章与 RSS 输出。',
         icon: 'flat-color-icons:database',
       },
     ]}
@@ -397,62 +368,54 @@ const structuredData = [
     </Fragment>
   </Features2>
 
-  <!-- Timeline Widget **************** -->
-
+  <!-- 项目历程 -->
   <Timeline
     id="story"
     layout="alternate"
-    tagline="Our story"
-    title="One template, since 2022"
-    subtitle="Started before Astro 1.0 shipped, shaped by every Astro release since, and by the people who kept sending pull requests."
+    tagline="项目历程"
+    title="一个模板，从 2022 年走到今天"
+    subtitle="从 Astro 1.0 beta 时代起步，跟随每一次大版本演进，也由社区的贡献者一点点打磨。"
     items={[
       {
-        date: 'June 2022',
-        title: 'A template for a framework still in beta',
-        description:
-          'AstroWind starts on Astro 1.0 beta with a handful of pages, a few widgets and one idea: a website can be fast, simple and good-looking at the same time.',
+        date: '2022 年 6 月',
+        title: '诞生在 Astro 1.0 beta 时期',
+        description: '最初只有几个页面和少量区块，思路却很明确：网站可以同时做到快、简单、好看。',
         icon: 'tabler:rocket',
       },
       {
-        date: '2022',
-        title: 'The most starred Astro theme, in its first year',
-        description:
-          'By December it is the most starred theme in the Astro ecosystem, a place it would hold year after year. The first pull requests from strangers arrive, and they keep coming.',
+        date: '2022 年',
+        title: '成为 Star 最多的 Astro 主题',
+        description: '年底登上 Astro 生态榜首，此后连续多年保持这一位置，第一批来自陌生开发者的 PR 也陆续到来。',
         icon: 'tabler:star-filled',
       },
       {
         date: '2022–2023',
-        title: 'The busiest stretch',
-        description:
-          'Astro grows fast and the template grows with it: collections for content, better images, page transitions. The blog matures, the widgets double, the road to 1.0 begins, and more people than ever send pull requests.',
+        title: '最忙碌的一段时期',
+        description: '内容集合、图片优化、页面过渡相继加入，区块数量翻倍，博客逐渐成型。',
         icon: 'tabler:users-group',
       },
       {
-        date: '2024',
-        title: 'Polish',
-        description:
-          'Astro 4, and a year of small, careful improvements, most of them sent in by contributors: accessibility, tooling, ways to edit and ways to deploy. Three thousand stars by September.',
+        date: '2024 年',
+        title: '打磨细节',
+        description: '跟随 Astro 4 更新，大部分提交来自贡献者：可访问性、工具链、编辑与部署方式的改进。',
         icon: 'tabler:puzzle',
       },
       {
-        date: '2025',
-        title: 'Steady, and quieter',
-        description:
-          'Astro 5 and regular updates. Fewer commits, nothing broken, and the stars kept coming: five thousand by October.',
+        date: '2025 年',
+        title: '稳定迭代',
+        description: '升级 Astro 5，提交节奏放缓但没有停，Star 数在 10 月突破五千。',
         icon: 'tabler:refresh',
       },
       {
-        date: '2026',
-        title: 'Astro 7 and Tailwind CSS 4',
-        description:
-          'Two framework majors in one year. The template gets a new generation of widgets, complete landing pages, a blog that finally reads like documentation, and a guide so coding assistants know their way around.',
+        date: '2026 年',
+        title: 'Astro 7 与 Tailwind CSS 4',
+        description: '一年内跟进两个框架大版本：新一代区块、完整落地页示例、更像文档的博客，以及写给 AI 助手的指南。',
         icon: 'tabler:sparkles',
       },
       {
-        date: '2026',
-        title: 'Release v1',
-        description:
-          'Four years after the first commit, the demo has no placeholders left: every page, every landing page and every post is real, and the template is ready for whatever comes next.',
+        date: '2026 年',
+        title: 'v1 趋于完整',
+        description: '首次提交四年后，演示站里不再有占位内容：每个页面、每篇示例文章都是真实的。',
         icon: 'tabler:circle-check-filled',
         highlight: true,
       },
@@ -460,88 +423,80 @@ const structuredData = [
     ]}
   />
 
-  <!-- Note Widget ******************* -->
+  <Note title="设计理念：" description="简洁 · 最佳实践 · 高性能" />
 
-  <Note title="Philosophy:" description="Simplicity, Best Practices and High Performance" />
-
-  <!-- HighlightedPosts Widget ******* -->
-
+  <!-- 中文文章 -->
   <BlogHighlightedPosts
-    title="Find out more content in our Blog"
+    title="继续阅读中文指南"
+    linkText="查看全部文章"
     postIds={[
       'get-started-website-with-astro-tailwind-css',
       'how-to-customize-astrowind-to-your-brand',
-      'useful-resources-to-create-websites',
-      'landing',
+      'astrowind-template-in-depth',
+      'build-websites-with-ai',
     ]}
-    information={`The blog is used to display AstroWind documentation.
-                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro v7 + Tailwind CSS v4.
-                        Astro is a very interesting technology. Thanks.
-                `}
+    information="这几篇文章从安装、定制讲到模板原理与 AI 协作，按需要挑一篇开始即可。所有示例文章都放在 src/data/post/，构建时自动进入列表、分类、标签与 RSS。"
   />
 
-  <!-- FAQs Widget ******************* -->
-
+  <!-- 常见问题 -->
   <FAQs
     id="faqs"
-    title="Frequently Asked Questions"
-    subtitle="The questions people ask before they clone the repository, answered briefly. For step-by-step tasks, the repository ships skills your AI coding assistant can follow."
-    tagline="FAQs"
+    title="常见问题"
+    subtitle="在克隆仓库之前最常被问到的几个问题。更复杂的操作步骤，仓库里的 .agents/skills/ 已经写成了分步指南。"
+    tagline="FAQ"
     schema
     items={[
       {
-        title: 'What is AstroWind?',
+        title: 'AstroWind 是什么？',
         description:
-          'A free, open-source template for Astro and Tailwind CSS: a static site with a header, footer, twenty-plus reusable widgets, a Markdown/MDX blog, dark mode, RTL support, image optimisation, SEO metadata and an RSS feed, ready to be customised and deployed anywhere static files are served.',
+          '一个基于 Astro v7 与 Tailwind CSS v4 的免费开源静态站点模板：包含页头页脚、30+ 可复用区块、Markdown/MDX 博客、暗色模式、RTL、图片优化、SEO 元信息与 RSS，改完内容即可部署到任意静态托管。',
       },
       {
-        title: 'What do I need to start?',
+        title: '开始之前需要准备什么？',
         description:
-          'A current Node.js (the exact minimum is in <code>package.json</code>) and a terminal. Run <code>npm create astro@latest -- --template arthelokyo/astrowind</code>, then <code>npm run dev</code>. Site name, URL, metadata and blog options live in <code>src/config.yaml</code>; colours and fonts in <code>src/components/CustomStyles.astro</code>.',
+          'Node.js 22.22.3 或更高版本（<code>.nvmrc</code> 中已固定）和一个终端。运行 <code>npm create astro@latest -- --template arthelokyo/astrowind</code>，再 <code>npm run dev</code>。站点信息在 <code>src/config.yaml</code>，颜色字体在 <code>src/components/CustomStyles.astro</code>。',
       },
       {
-        title: 'Can I use it for a site without a blog?',
+        title: '不需要博客，可以关掉吗？',
         description:
-          'Yes. Set <code>apps.blog.isEnabled: false</code> in <code>src/config.yaml</code> and the blog routes, the RSS feed and the post widgets disappear from the build. The rest of the template is unaffected.',
+          '可以。把 <code>src/config.yaml</code> 里的 <code>apps.blog.isEnabled</code> 设为 <code>false</code>，博客路由、RSS 与文章区块都会从构建产物中消失，其余部分不受影响。',
       },
       {
-        title: 'How do I change colours, fonts and the logo?',
+        title: '怎么换颜色、字体和 Logo？',
         description:
-          'Colours are CSS variables in <code>src/components/CustomStyles.astro</code> (light and dark), fonts are configured in <code>astro.config.ts</code> through Astro’s Fonts API, and the logo is <code>src/components/Logo.astro</code>. The same variables also feed the shadcn/ui-compatible tokens, so shadcn-style components pick up your theme.',
+          '颜色是 <code>CustomStyles.astro</code> 里的明暗两套 CSS 变量；字体在 <code>astro.config.ts</code> 的 fonts 配置里通过 Astro Fonts API 自托管；Logo 是 <code>src/components/Logo.astro</code>。这些变量同时喂给 shadcn/ui 兼容的设计 token。',
       },
       {
-        title: 'Does it work with an AI coding assistant?',
+        title: '真的能让 AI 助手直接改吗？',
         description:
-          'It is built for it. The repository includes <code>AGENTS.md</code> with the project conventions and a <code>.agents/skills/</code> folder with step-by-step guides for common tasks (disable the blog, set an Open Graph image, deploy under a base path, connect a CMS, deploy to Cloudflare…), so tools like Claude Code, Codex or Cursor can do them reliably.',
+          '仓库自带 <code>AGENTS.md</code> 约定与 <code>.agents/skills/</code> 下 16 个分步技能（关博客、换 OG 图、子路径部署、接 CMS、部署 Cloudflare 等），Claude Code、Codex、Cursor 都能按指南可靠完成任务。',
       },
       {
-        title: 'Where can I deploy it and what does it cost?',
+        title: '能部署到哪里，需要付费吗？',
         description:
-          'Anywhere that serves static files: Vercel, Netlify, Cloudflare, GitHub Pages, an nginx container (a Dockerfile is included) or your own server. The template is MIT licensed and free for personal and commercial projects.',
+          '任何能托管静态文件的地方：Vercel、Netlify、Cloudflare Workers、GitHub Pages、nginx 容器（仓库自带 Dockerfile）或自己的服务器。模板采用 MIT 许可，个人与商业项目都免费。',
       },
     ]}
   />
 
-  <!-- Stats Widget ****************** -->
-
+  <!-- 数字 -->
   <Stats
     id="stats"
     countUp
     stats={[
-      { title: 'GitHub stars', amount: '6K' },
-      { title: 'Forks', amount: '1.7K' },
-      { title: 'Ready-made widgets', amount: '34' },
-      { title: 'Lighthouse score', amount: '100' },
+      { title: 'GitHub Star', amount: '6.1' },
+      { title: 'Fork 数量（千）', amount: '1.7' },
+      { title: '现成页面区块', amount: '37' },
+      { title: 'Lighthouse 评分', amount: '100' },
     ]}
   />
 
-  <!-- CallToAction Widget *********** -->
-
+  <!-- 行动号召 -->
   <CallToAction
     actions={[
       {
         variant: 'primary',
-        text: 'Get template',
+        text: '获取模板',
         href: 'https://github.com/arthelokyo/astrowind',
         target: '_blank',
         icon: 'tabler:download',
@@ -553,7 +508,7 @@ const structuredData = [
     </Fragment>
 
     <Fragment slot="subtitle">
-      Free, open source and production-ready. <br class="hidden md:inline" />Clone it, replace the content and deploy.
+      免费、开源、生产可用。<br class="hidden md:inline" />克隆下来，换成你的内容，然后部署。
     </Fragment>
   </CallToAction>
 </Layout>

@@ -1,69 +1,53 @@
 ---
 publishDate: 2026-08-17T00:00:00Z
-title: 'Build a Website with an AI Coding Assistant and Astro'
-excerpt: AstroWind ships an AGENTS.md and skills that teach any AI coding assistant the template. Which requests work well and how to keep the results reviewable.
+author: AstroWind 中文站
+title: 用 AI 助手改造 AstroWind：AGENTS.md 与 16 个技能
+excerpt: 为什么这个模板特别适合 AI 协作，AGENTS.md 写了什么，.agents/skills/ 里有哪些现成任务指南，以及怎样让改动保持可审查。
 image: https://images.unsplash.com/photo-1527430253228-e93688616381?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80
-imageAlt: A blue plastic toy robot
-category: Tutorials
+imageAlt: 蓝色玩具机器人
+category: 教程
 tags:
   - ai
   - astro
-  - tailwind css
+  - 工程实践
 ---
 
-Most of the work on a marketing site is not hard, it is long: a new page that looks like the others, a section moved from one page to another, a blog post with the right front matter, a deployment setting nobody remembers. AI coding assistants are good at exactly this kind of work, provided they know the conventions of the project. AstroWind gives them those conventions in two places, so that the same assistant that can [create the project](/get-started-website-with-astro-tailwind-css) can also [rebrand it](/how-to-customize-astrowind-to-your-brand) or [explain how it works](/astrowind-template-in-depth) without guessing.
+做营销站的大部分工作并不难，只是琐碎：再加一个和现有风格一致的页面、把某个区块挪到另一页、写一篇 frontmatter 正确的文章、改一个谁都记不住的部署配置。AI 编程助手恰好擅长这些——前提是它知道这个项目的约定。AstroWind 把约定直接写进了仓库。
 
-## What AstroWind ships for AI coding assistants
+## 两份说明书
 
-**`AGENTS.md`** at the root describes the stack, the directory layout, the commands to run and the rules the code follows. Most coding agents pick up an `AGENTS.md` on their own; check your tool's documentation (a `CLAUDE.md` in this repository simply points to it).
+- **`AGENTS.md`**：项目概览、技术栈、目录结构、`~/` 路径别名、配置系统、Tailwind v4 的 CSS-first 写法、内容集合、组件模式、图片与字体处理，以及改动后的验证清单。
+- **`.agents/skills/`**：16 个针对具体任务的分步指南，覆盖常见改造场景。`CLAUDE.md` 则为 Claude Code 提供同样的入口。
 
-**`.agents/skills/`** contains one Markdown file per recurring task, written as a recipe: which files to touch, in which order, what to verify. A few examples:
+README 的 FAQ 甚至直接写：「问你的 AI 编程助手。」这不是营销话术，而是这个模板的主要设计目标之一。
 
-| Skill                       | What it does                                                |
-| --------------------------- | ----------------------------------------------------------- |
-| `add-page.md`               | A new page composed of widgets, with metadata.              |
-| `add-blog-post.md`          | A post with the right front matter and image handling.      |
-| `styling.md`                | Colors, fonts and Tailwind tokens.                          |
-| `configure-contact-form.md` | Connecting the contact form to a backend or a form service. |
-| `deploy-cloudflare.md`      | Deploying to Cloudflare Pages.                              |
+## 16 个技能分别解决什么
 
-…and a dozen more, from the widget catalog to structured data and base-path deployments. `AGENTS.md` tells the assistant to look for a matching skill before doing anything project-specific, so you do not need to mention them. You can also read them yourself: they are short and make a decent manual.
+| 类别       | 技能                                                                                      |
+| ---------- | ----------------------------------------------------------------------------------------- |
+| 加内容     | `add-blog-post`、`add-page`、`add-component`、`write-landing-page`                        |
+| 改外观     | `styling`、`use-shadcn-tokens`、`customize-header`、`set-open-graph-image`                |
+| 博客配置   | `disable-blog`、`content-at-build-time`、`add-structured-data`                            |
+| 部署与集成 | `deploy-cloudflare`、`deploy-with-base-path`、`setup-decap-cms`、`configure-contact-form` |
+| 组件参考   | `use-widgets`（每个区块的 props 与示例位置）                                              |
 
-## Prompts that work well with AI coding assistants
+`use-widgets.md` 是其中最常用的一份：它逐个列出 30+ 区块的 props、类型和演示页面，助手不用猜某个组件该传什么。
 
-The following are the kind of instruction an assistant such as [Claude Code](https://claude.com/claude-code), [Cursor](https://cursor.com/) or [GitHub Copilot](https://github.com/features/copilot) can carry out end to end, with `npm run check` and a build to confirm:
+## 一个好用的提问方式
 
-- "Add a `/careers` page with a hero, a list of open positions as feature cards and a call to action, using the same header as the rest of the site."
-- "Turn the pricing section of the sales landing page into a comparison table with three plans."
-- "Write a blog post from these notes, with a cover image from `src/assets/images/`, the category `Product` and the tags `release`, `changelog`."
-- "Change the brand colors to `#0f766e` and `#f59e0b`, in light and dark mode, and show me the pages where the contrast may be a problem."
-- "Disable the blog and remove it from the menus and the footer."
-- "Deploy this site under `/handbook` on GitHub Pages."
-- "Add FAQ structured data to the pricing page."
-- "Replace the testimonials on the home page with a logo strip and a single quote."
+不要只说「帮我加个页面」，把目标和校验条件一起给它：
 
-Each of these maps to one or two skills plus the widget catalog, which is why the result tends to match the rest of the site rather than introducing a new style.
+> 参考 `.agents/skills/add-page.md`，用 `src/components/widgets/` 里的现有区块做一个「客户案例」页，文案用中文，不要新增第三方依赖。完成后运行 `npm run build` 和 `npm run check`，并告诉我改了哪些文件。
 
-## Habits that keep AI-generated code reviewable
+技能文档会把「文件放哪、用哪个布局、怎么接导航」固定下来，你审查 diff 时看到的就只是预期内的改动。
 
-**Point at a demo page.** "Like the product landing page but for a service" gives the assistant a concrete structure to copy, which is how the template is meant to be used anyway.
+## 改动之后仍然要验证
 
-**Ask for the check.** `npm run check` runs `astro check`, ESLint and Prettier; `npm run build` catches broken imports and invalid front matter. Ask the assistant to run both before it reports back, and to show you the output when something fails.
+`AGENTS.md` 的验证清单值得照抄进提示词：
 
-**Review the diff, not the summary.** Assistants summarize generously. The diff is short for most of these tasks and is the thing to read. Look for hardcoded colors (they should be tokens), links to `#`, and demo content that was left in place.
+1. `npm run build` 通过；
+2. `npm run check` 通过（`astro check` + ESLint + Prettier）；
+3. 浏览器里看首页、博客、暗色模式与移动端菜单；
+4. 首页的 `WebSite` / `Organization` 结构化数据只由 `config.yaml` 生成，确保上线时内容真实。
 
-**Keep content decisions yours.** The assistant is good at structure and mechanics; the headline, the offer and the proof are your job. Real testimonials, real numbers, real screenshots.
-
-**One task per conversation.** A page, then a post, then a deployment. Long conversations drift; short ones finish.
-
-## Adding your own AGENTS.md rules
-
-The files are plain Markdown and belong to your repository, so adapt them:
-
-- Add a skill for anything your team does repeatedly: how to add a case study, how to publish a release note, how to update the pricing table. Follow the shape of the existing files: steps, files involved, verification.
-- Add your own rules to `AGENTS.md`: naming, the tone of voice, which pages are off limits, the branch and review process.
-- When you change something structural (a new content collection, a different deployment target), update the affected skill in the same pull request. An outdated recipe is worse than none.
-
-## Doing it without an AI assistant
-
-Nothing here is required. The skills are also the shortest documentation of the template: reading the widget catalog and the landing page recipe takes ten minutes and covers most of what the [getting started guide](/get-started-website-with-astro-tailwind-css) and the [customization guide](/how-to-customize-astrowind-to-your-brand) explain at length.
+顺带一提：本站本身就是一次「AI 改造模板」的实践——把演示站的英文文案全部换成介绍 AstroWind 的中文内容，同时保留原有组件与构建链路。想了解改了哪些地方，看[模板原理拆解](/astrowind-template-in-depth)与[定制品牌外观](/how-to-customize-astrowind-to-your-brand)。

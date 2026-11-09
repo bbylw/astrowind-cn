@@ -9,9 +9,9 @@ export interface Props {
 }
 
 const {
-  badge = 'NEW',
-  text = 'Astro v7 is now available! »',
-  href = 'https://astro.build/blog/astro-7/',
+  badge = '新版',
+  text = 'AstroWind 已适配 Astro v7 与 Tailwind CSS v4 »',
+  href = 'https://github.com/arthelokyo/astrowind',
   showStars = true,
 } = Astro.props;
 ---
@@ -40,10 +40,10 @@ const {
         target="_blank"
         rel="noopener noreferrer"
         class="ltr:ml-auto rtl:mr-auto w-[5.6rem] h-[1.25rem] ml-auto bg-contain bg-right bg-no-repeat inline-block bg-[url(https://img.shields.io/github/stars/arthelokyo/astrowind.svg?style=social&label=Stars&maxAge=86400)]"
-        title="If you like AstroWind, give us a star."
+        title="喜欢 AstroWind 的话，去 GitHub 点个 Star"
         href="https://github.com/arthelokyo/astrowind"
       >
-        <span class="sr-only">GitHub stars</span>
+        <span class="sr-only">GitHub Star 数量</span>
       </a>
     )
   }
