@@ -48,6 +48,7 @@
 - [参与贡献](#参与贡献)
 - [致谢](#致谢)
 - [许可](#许可)
+- [本仓库的 Bun 语境](#本仓库的-bun-语境)
 
 </details>
 
@@ -313,3 +314,28 @@ Node.js 22.22.3 或更高版本（见 `.nvmrc`）。
 ## 许可
 
 **AstroWind** 基于 MIT 许可发布 — 详见 [LICENSE](./LICENSE.md) 文件。
+
+## 本仓库的 Bun 语境
+
+> 以上正文是上游 [arthelokyo/astrowind](https://github.com/arthelokyo/astrowind) `README.md` 的中文翻译，其中的 npm 命令与 Node 版本按上游原文保留，不适用于本仓库。本仓库实际改用 **Bun**，运行方式如下。
+
+| 项目       | 上游 README                 | 本仓库                                                |
+| :--------- | :-------------------------- | :---------------------------------------------------- |
+| 包管理器   | npm                         | Bun 1.4.4（`packageManager` 固定）                    |
+| 锁文件     | 未指定                      | `bun.lock`，仓库中唯一的锁文件                        |
+| 脚本运行时 | 系统 Node.js                | `bunx --bun`，不依赖系统 Node 版本                    |
+| Node.js    | >= 22.22.3（上游 `.nvmrc`） | `engines.node` >= 22.23.4，本仓库 `.nvmrc` 为 22.23.4 |
+
+### 本仓库命令
+
+| 命令                            | 作用                                          |
+| :------------------------------ | :-------------------------------------------- |
+| `bun install --frozen-lockfile` | 安装依赖（CI、Docker 与各部署平台统一使用）   |
+| `bun run dev`                   | 在 `localhost:4321` 启动本地开发服务器        |
+| `bun run build`                 | 将生产站点构建到 `./dist/`                    |
+| `bun run preview`               | 部署前在本地预览构建结果                      |
+| `bun run check`                 | astro check + ESLint + Prettier               |
+| `bun run fix`                   | ESLint --fix + Prettier -w                    |
+| `bun run astro ...`             | 运行 `astro add`、`astro preview` 等 CLI 命令 |
+
+> 不要把脚本改回 `bun --bun astro ...`：Bun 会把它解析成同名的 `astro` 脚本并无限递归；`bunx --bun` 才会解析到二进制。
