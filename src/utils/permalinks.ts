@@ -6,11 +6,16 @@ import { trim } from '~/utils/utils';
 
 export const trimSlash = (s: string) => trim(trim(s, '/'));
 const createPath = (...params: string[]) => {
-  const paths = params
+  const joined = params
     .map((el) => trimSlash(el))
     .filter((el) => !!el)
     .join('/');
-  return '/' + paths + (SITE.trailingSlash && paths ? '/' : '');
+  // `#fragment` hugs the path (`/base#section`), so the slash that joined it must go:
+  // `/base/#section` is a different URL and 404s on the dev server.
+  const hashAt = joined.indexOf('#');
+  const path = trim(hashAt === -1 ? joined : joined.slice(0, hashAt), '/');
+  const fragment = hashAt === -1 ? '' : joined.slice(hashAt);
+  return '/' + path + (SITE.trailingSlash && path ? '/' : '') + fragment;
 };
 
 const BASE_PATHNAME = SITE.base || '/';
