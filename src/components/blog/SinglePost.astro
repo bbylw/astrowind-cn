@@ -22,8 +22,8 @@ const { post, url } = Astro.props;
   <article>
     <header class="intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
       <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
-        <p>
-          <Icon name="tabler:clock" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
+        <p class="text-sm text-muted dark:text-slate-400">
+          <Icon name="tabler:clock" class="w-4 h-4 mr-1 inline-block -mt-0.5" />
           <time datetime={post.publishDate.toISOString()} class="inline-block">
             {getFormattedDate(post.publishDate)}
           </time>
@@ -39,7 +39,7 @@ const { post, url } = Astro.props;
           {post.author && (
             <>
               {' '}
-              · <Icon name="tabler:user" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
+              · <Icon name="tabler:user" class="w-4 h-4 mr-1 inline-block -mt-0.5" />
               <span class="inline-block">{post.author}</span>
             </>
           )}
@@ -60,7 +60,7 @@ const { post, url } = Astro.props;
         </p>
       </div>
 
-      <h1 class="px-4 sm:px-6 max-w-3xl mx-auto text-4xl md:text-5xl font-bold leading-[1.14] tracking-tighter font-heading">
+      <h1 class="px-4 sm:px-6 max-w-3xl mx-auto text-4xl md:text-5xl font-bold leading-[1.14] tracking-tighter font-heading text-balance break-keep">
         {post.title}
       </h1>
       <p class="max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-xl md:text-2xl text-muted dark:text-slate-400 text-pretty">

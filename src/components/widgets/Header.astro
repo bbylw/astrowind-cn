@@ -83,7 +83,7 @@ const persistKey = `header-${Array.from(
           'lg:grid lg:grid-cols-3 lg:items-center': position === 'center',
         },
         {
-          'max-w-7xl': !isFullWidth,
+          'max-w-6xl': !isFullWidth,
         },
       ]}
     >
@@ -106,12 +106,12 @@ const persistKey = `header-${Array.from(
                 <>
                   <button
                     type="button"
-                    class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap"
+                    class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap max-lg:pointer-events-none max-lg:cursor-default max-lg:text-muted max-lg:text-sm max-lg:font-semibold max-lg:pt-6 max-lg:pb-1"
                   >
                     {text}{' '}
                     <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden lg:inline" />
                   </button>
-                  <ul class="dropdown-menu lg:backdrop-blur-md dark:lg:bg-slate-900 dark:lg:border dark:lg:border-slate-700/50 rounded lg:absolute pl-4 lg:pl-0 lg:hidden font-medium lg:bg-white/90 lg:min-w-[200px] drop-shadow-xl">
+                  <ul class="dropdown-menu lg:backdrop-blur-md dark:lg:bg-slate-900 dark:lg:border dark:lg:border-slate-700/50 rounded lg:absolute pl-4 lg:pl-0 lg:hidden font-medium lg:bg-white lg:min-w-[200px] lg:border lg:border-gray-100 lg:shadow-xl">
                     {links.map(({ text: text2, href: href2 }) => (
                       <li>
                         <a
@@ -145,7 +145,7 @@ const persistKey = `header-${Array.from(
       <div
         class:list={[
           { 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' },
-          'hidden lg:self-center lg:flex items-center lg:mb-0 fixed w-full lg:w-auto lg:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 lg:p-0 lg:justify-self-end',
+          'hidden lg:self-center lg:flex items-center lg:mb-0 fixed w-full lg:w-auto lg:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 lg:p-0 lg:justify-self-end bg-page dark:bg-dark border-t border-gray-200 dark:border-slate-700 lg:bg-transparent lg:border-0',
         ]}
       >
         <div class="items-center flex justify-between w-full lg:w-auto">
