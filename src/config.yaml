@@ -1,6 +1,6 @@
 site:
   name: AstroWind 中文站
-  site: 'https://bbylw.github.io' # GitHub Pages 项目页的域名
+  site: 'https://w404.nyc.mn' # GitHub Pages 账户自定义域名
   base: '/astrowind-cn' # 项目页子路径，不带尾斜杠
   trailingSlash: false
 

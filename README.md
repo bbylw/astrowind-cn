@@ -59,7 +59,7 @@ bun install --frozen-lockfile
 bun run build
 ```
 
-- **GitHub Pages（本站实际部署方式）**：`.github/workflows/deploy-pages.yml` 在 push 到 `main` 时用 Bun 构建并上传 `dist/`，再由 `actions/deploy-pages` 发布。站点地址 <https://bbylw.github.io/astrowind-cn/>，Pages 的 Source 需设为 **GitHub Actions**。
+- **GitHub Pages（本站实际部署方式）**：`.github/workflows/deploy-pages.yml` 在 push 到 `main` 时用 Bun 构建并上传 `dist/`，再由 `actions/deploy-pages` 发布。站点地址 <https://w404.nyc.mn/astrowind-cn/>（`bbylw.github.io` 会重定向到该自定义域名），Pages 的 Source 需设为 **GitHub Actions**。
 - GitHub Actions（CI）：`.github/workflows/actions.yaml`，`oven-sh/setup-bun@v2` + Node 22.23.4，缓存 `~/.bun/install/cache`。
 - Docker：`oven/bun:1.4.4-alpine` 多阶段构建，最终由 nginx 提供 `dist/`。
 - Vercel：`installCommand` / `buildCommand` 显式指定 bun。
@@ -70,7 +70,7 @@ bun run build
 
 ## 上线前必改
 
-- `src/config.yaml` 已按 GitHub Pages 项目页设为 `site: 'https://bbylw.github.io'` + `base: '/astrowind-cn'`。换域名或改成根路径站点时，必须同时改这两项，否则资源链接会 404；`trailingSlash` 保持 `false`（改成 `true` 会给 `#anchor` 链接追加尾斜杠）。
+- `src/config.yaml` 已按 GitHub Pages 项目页设为 `site: 'https://w404.nyc.mn'` + `base: '/astrowind-cn'`。换域名或改成根路径站点时，必须同时改这两项，否则资源链接会 404；`trailingSlash` 保持 `false`（改成 `true` 会给 `#anchor` 链接追加尾斜杠）。
 - 如需 Google Search Console / GA，填写 `googleSiteVerificationId` 与 `analytics.vendors.googleAnalytics.id`。
 - `public/robots.txt` 构建时会由模板自动更新 sitemap 地址（会自动带上 base）。
 
