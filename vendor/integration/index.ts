@@ -95,7 +95,7 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}): AstroIntegra
           if (hasIntegration && sitemapExists) {
             const robotsTxt = fs.readFileSync(robotsTxtFile, { encoding: 'utf8', flag: 'a+' });
             // `base` has no trailing slash, so resolving a file against it would
-            // replace the last path segment (`/astrowind-cn` → `/sitemap.xml`).
+            // replace the last path segment (e.g. `/docs` → `/sitemap.xml`).
             const baseWithSlash = cfg.base.endsWith('/') ? cfg.base : `${cfg.base}/`;
             const sitemapUrl = new URL(sitemapName, String(new URL(baseWithSlash, cfg.site)));
             const pattern = /^Sitemap:(.*)$/m;

@@ -23,7 +23,7 @@ const metadata = {
 };
 
 // 站点与发布者的结构化数据，全部来自 src/config.yaml
-// site.site 是 Pages 域名，base 是项目路径；结构化数据要用包含 base 的完整地址。
+// site.site 是对外域名，base 为部署子路径（自定义域根部署时为 '/'）。
 const siteUrl = new URL(SITE?.base || '/', SITE?.site).toString().replace(/\/$/, '');
 const organizationId = `${siteUrl}/#organization`;
 const structuredData = [
