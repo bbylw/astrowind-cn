@@ -14,7 +14,7 @@ apps:
 
 2. Remove the blog entries from `headerData.links` in `src/navigation.ts` (the "Blog" dropdown) and any blog link in `footerData`.
 3. Remove `<BlogLatestPosts />` (and `<BlogHighlightedPosts />` if used) from `src/pages/index.astro` and any other page; with the blog disabled they render nothing, so they are just dead code.
-4. Run `npm run build` and confirm no `/blog`, `/category/*`, `/tag/*` or post pages are emitted in `dist/`.
+4. Run `bun run build` and confirm no `/blog`, `/category/*`, `/tag/*` or post pages are emitted in `dist/`.
 
 ## What changes
 

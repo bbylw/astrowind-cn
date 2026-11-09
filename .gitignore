@@ -19,15 +19,12 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# pnpm-specific files: pnpm is supported for local use (see .pnpmrc), but
-# package-lock.json is the tracked lockfile and npm is what CI, Docker and
-# the deploy targets run. Committing these would let the two trees diverge.
+# bun.lock is the single tracked lockfile. npm / pnpm / yarn lockfiles are
+# not used: CI, Docker and the deploy targets all run bun.
+package-lock.json
 pnpm-lock.yaml
 pnpm-workspace.yaml
-
-# bun is used for local development, but package-lock.json is still the
-# lockfile consumed by CI, Docker and the deploy targets.
-bun.lock
+yarn.lock
 
 # WorkBuddy local session notes
 .workbuddy-ai/

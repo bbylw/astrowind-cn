@@ -79,4 +79,4 @@ fonts: [
 
 ## 验证
 
-改完运行 `npm run build` 与 `npm run check`，然后在浏览器里看首页、博客、暗色模式和移动端菜单。特别注意：结构化数据（首页的 WebSite / Organization）完全来自 `config.yaml`，上线前要保证里面的信息对你的站点是真实的。
+改完运行 `bun run build` 与 `bun run check`，然后在浏览器里看首页、博客、暗色模式和移动端菜单。特别注意：结构化数据（首页的 WebSite / Organization）完全来自 `config.yaml`，上线前要保证里面的信息对你的站点是真实的。

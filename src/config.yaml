@@ -1,7 +1,7 @@
 site:
   name: AstroWind 中文站
-  site: 'https://example.com' # 部署前请改成自己的域名
-  base: '/'
+  site: 'https://bbylw.github.io' # GitHub Pages 项目页的域名
+  base: '/astrowind-cn' # 项目页子路径，不带尾斜杠
   trailingSlash: false
 
   googleSiteVerificationId: false

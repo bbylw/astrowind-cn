@@ -41,77 +41,73 @@ const vertical = orientation === 'vertical';
           : 'mb-8 flex flex-wrap justify-center gap-2',
       ]}
     >
-      {
-        items.map(({ title: tabTitle, description, icon }, index) => (
-          <button
-            type="button"
-            role="tab"
-            id={`${uid}-tab-${index}`}
-            aria-controls={`${uid}-panel-${index}`}
-            aria-selected={index === 0 ? 'true' : 'false'}
-            tabindex={index === 0 ? 0 : -1}
-            class:list={[
-              'group text-left rounded-lg border transition outline-offset-2',
-              vertical
-                ? 'flex gap-4 p-4 border-transparent aria-selected:border-gray-200 aria-selected:bg-white aria-selected:shadow-md dark:aria-selected:border-slate-700 dark:aria-selected:bg-slate-900 hover:bg-gray-50 dark:hover:bg-slate-800/60'
-                : 'flex items-center gap-2 px-4 py-2 border-gray-200 dark:border-slate-700 aria-selected:bg-primary aria-selected:border-primary aria-selected:text-white hover:border-primary/50',
-            ]}
-          >
-            {icon && (
-              <Icon
-                name={icon}
-                class:list={[
-                  'shrink-0',
-                  vertical ? 'mt-0.5 h-7 w-7 text-primary' : 'h-5 w-5 text-primary group-aria-selected:text-white',
-                ]}
-              />
-            )}
-            <span>
-              <span class:list={['block font-bold', vertical ? 'text-lg text-heading' : 'text-sm']}>{tabTitle}</span>
-              {vertical && description && <span class="mt-1 block text-muted" set:html={description} />}
-            </span>
-          </button>
-        ))
-      }
+      {items.map(({ title: tabTitle, description, icon }, index) => (
+        <button
+          type="button"
+          role="tab"
+          id={`${uid}-tab-${index}`}
+          aria-controls={`${uid}-panel-${index}`}
+          aria-selected={index === 0 ? 'true' : 'false'}
+          tabindex={index === 0 ? 0 : -1}
+          class:list={[
+            'group text-left rounded-lg border transition outline-offset-2',
+            vertical
+              ? 'flex gap-4 p-4 border-transparent aria-selected:border-gray-200 aria-selected:bg-white aria-selected:shadow-md dark:aria-selected:border-slate-700 dark:aria-selected:bg-slate-900 hover:bg-gray-50 dark:hover:bg-slate-800/60'
+              : 'flex items-center gap-2 px-4 py-2 border-gray-200 dark:border-slate-700 aria-selected:bg-primary aria-selected:border-primary aria-selected:text-white hover:border-primary/50',
+          ]}
+        >
+          {icon && (
+            <Icon
+              name={icon}
+              class:list={[
+                'shrink-0',
+                vertical ? 'mt-0.5 h-7 w-7 text-primary' : 'h-5 w-5 text-primary group-aria-selected:text-white',
+              ]}
+            />
+          )}
+          <span>
+            <span class:list={['block font-bold', vertical ? 'text-lg text-heading' : 'text-sm']}>{tabTitle}</span>
+            {vertical && description && <span class="mt-1 block text-muted" set:html={description} />}
+          </span>
+        </button>
+      ))}
     </div>
 
     <div class:list={[vertical ? ['lg:col-span-7', isReversed ? 'lg:order-1' : ''] : '']}>
-      {
-        items.map(({ title: tabTitle, description, image }, index) => (
-          <div
-            role="tabpanel"
-            id={`${uid}-panel-${index}`}
-            aria-labelledby={`${uid}-tab-${index}`}
-            tabindex="0"
-            hidden={index !== 0}
-            class="outline-offset-4"
-          >
-            {image && (
-              <div class="relative overflow-hidden rounded-lg shadow-lg bg-gray-100 dark:bg-slate-800">
-                {typeof image === 'string' ? (
-                  <Fragment set:html={image} />
-                ) : (
-                  <Image
-                    class="w-full"
-                    widths={[400, 768, 1024]}
-                    sizes="(max-width: 1023px) 100vw, 720px"
-                    width={720}
-                    height={480}
-                    layout="constrained"
-                    format="webp"
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    alt={tabTitle ?? ''}
-                    {...image}
-                  />
-                )}
-              </div>
-            )}
-            {!vertical && description && (
-              <p class="mx-auto mt-6 max-w-3xl text-center text-muted" set:html={description} />
-            )}
-          </div>
-        ))
-      }
+      {items.map(({ title: tabTitle, description, image }, index) => (
+        <div
+          role="tabpanel"
+          id={`${uid}-panel-${index}`}
+          aria-labelledby={`${uid}-tab-${index}`}
+          tabindex="0"
+          hidden={index !== 0}
+          class="outline-offset-4"
+        >
+          {image && (
+            <div class="relative overflow-hidden rounded-lg shadow-lg bg-gray-100 dark:bg-slate-800">
+              {typeof image === 'string' ? (
+                <Fragment set:html={image} />
+              ) : (
+                <Image
+                  class="w-full"
+                  widths={[400, 768, 1024]}
+                  sizes="(max-width: 1023px) 100vw, 720px"
+                  width={720}
+                  height={480}
+                  layout="constrained"
+                  format="webp"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  alt={tabTitle ?? ''}
+                  {...image}
+                />
+              )}
+            </div>
+          )}
+          {!vertical && description && (
+            <p class="mx-auto mt-6 max-w-3xl text-center text-muted" set:html={description} />
+          )}
+        </div>
+      ))}
     </div>
   </aw-tabs>
 </WidgetWrapper>

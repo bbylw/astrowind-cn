@@ -37,66 +37,54 @@ const badges = layout === 'badges';
           ],
     ]}
   >
-    {
-      items.map(({ label, value, icon, image, href, rating, color }) => {
-        const Item = href ? 'a' : 'div';
-        return (
-          <li class:list={badges ? '' : 'flex justify-center md:px-8 lg:px-12'}>
-            <Item
-              href={href}
-              target={href ? '_blank' : undefined}
-              rel={href ? 'noopener noreferrer' : undefined}
-              class:list={[
-                'flex items-center',
-                badges
-                  ? 'gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm shadow-sm dark:border-slate-700 dark:bg-slate-900'
-                  : 'gap-3',
-                href ? 'group' : '',
-              ]}
-            >
-              {image ? (
-                typeof image === 'string' ? (
-                  <Fragment set:html={image} />
-                ) : (
-                  <Image
-                    class="h-8 w-8 object-contain"
-                    width={32}
-                    height={32}
-                    layout="fixed"
-                    format="webp"
-                    {...image}
-                  />
-                )
+    {items.map(({ label, value, icon, image, href, rating, color }) => {
+      const Item = href ? 'a' : 'div';
+      return (
+        <li class:list={badges ? '' : 'flex justify-center md:px-8 lg:px-12'}>
+          <Item
+            href={href}
+            target={href ? '_blank' : undefined}
+            rel={href ? 'noopener noreferrer' : undefined}
+            class:list={[
+              'flex items-center',
+              badges
+                ? 'gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm shadow-sm dark:border-slate-700 dark:bg-slate-900'
+                : 'gap-3',
+              href ? 'group' : '',
+            ]}
+          >
+            {image ? (
+              typeof image === 'string' ? (
+                <Fragment set:html={image} />
               ) : (
-                icon && (
-                  <Icon
-                    name={icon}
-                    class:list={['shrink-0', color || 'text-primary', badges ? 'h-5 w-5' : 'h-8 w-8']}
-                  />
-                )
-              )}
-              <span class:list={badges ? 'flex items-baseline gap-1.5' : 'text-left'}>
-                <span
-                  class:list={[
-                    'font-bold leading-tight text-heading group-hover:text-primary',
-                    badges ? 'text-sm' : 'block text-lg',
-                  ]}
-                >
-                  {value}
-                </span>
-                {rating && (
-                  <span class="flex gap-0.5 text-amber-400" aria-label={`${rating} out of 5 stars`}>
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Icon name={i < Math.round(rating) ? 'tabler:star-filled' : 'tabler:star'} class="h-3.5 w-3.5" />
-                    ))}
-                  </span>
-                )}
-                {label && <span class:list={['text-sm text-muted', badges ? '' : 'block']}>{label}</span>}
+                <Image class="h-8 w-8 object-contain" width={32} height={32} layout="fixed" format="webp" {...image} />
+              )
+            ) : (
+              icon && (
+                <Icon name={icon} class:list={['shrink-0', color || 'text-primary', badges ? 'h-5 w-5' : 'h-8 w-8']} />
+              )
+            )}
+            <span class:list={badges ? 'flex items-baseline gap-1.5' : 'text-left'}>
+              <span
+                class:list={[
+                  'font-bold leading-tight text-heading group-hover:text-primary',
+                  badges ? 'text-sm' : 'block text-lg',
+                ]}
+              >
+                {value}
               </span>
-            </Item>
-          </li>
-        );
-      })
-    }
+              {rating && (
+                <span class="flex gap-0.5 text-amber-400" aria-label={`${rating} out of 5 stars`}>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Icon name={i < Math.round(rating) ? 'tabler:star-filled' : 'tabler:star'} class="h-3.5 w-3.5" />
+                  ))}
+                </span>
+              )}
+              {label && <span class:list={['text-sm text-muted', badges ? '' : 'block']}>{label}</span>}
+            </span>
+          </Item>
+        </li>
+      );
+    })}
   </ul>
 </WidgetWrapper>

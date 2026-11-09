@@ -47,28 +47,24 @@ const watchUrl = youtube ? `https://www.youtube.com/watch?v=${youtube}` : vimeo 
         aria-label={`Play video: ${videoTitle}`}
         data-aw-video-trigger
       >
-        {
-          poster &&
-            (typeof poster === 'string' ? (
-              <Fragment set:html={poster} />
-            ) : (
-              <Image
-                class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-                widths={[640, 1024]}
-                sizes="(max-width: 1023px) 100vw, 1024px"
-                width={1024}
-                height={576}
-                layout="cover"
-                format="webp"
-                alt=""
-                {...poster}
-              />
-            ))
-        }
+        {poster &&
+          (typeof poster === 'string' ? (
+            <Fragment set:html={poster} />
+          ) : (
+            <Image
+              class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+              widths={[640, 1024]}
+              sizes="(max-width: 1023px) 100vw, 1024px"
+              width={1024}
+              height={576}
+              layout="cover"
+              format="webp"
+              alt=""
+              {...poster}
+            />
+          ))}
         <span class="absolute inset-0 flex items-center justify-center">
-          <span
-            class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-primary shadow-lg transition group-hover:scale-105 md:h-20 md:w-20"
-          >
+          <span class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-primary shadow-lg transition group-hover:scale-105 md:h-20 md:w-20">
             <Icon name="tabler:player-play-filled" class="h-7 w-7 translate-x-0.5 md:h-8 md:w-8" />
           </span>
         </span>

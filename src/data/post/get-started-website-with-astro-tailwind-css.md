@@ -16,7 +16,7 @@ tags:
 
 ## 准备环境
 
-- **Node.js 22.22.3 或更高**。`package.json` 的 `engines` 写了最低版本，`.nvmrc` 固定了版本号。
+- **Bun 1.4.4 或更高**。`packageManager` 固定了版本，`package.json` 的 `engines` 也写明了下限；所有脚本通过 `bunx --bun` 使用 Bun 运行时。
 - 一个终端与编辑器。VS Code 装 Astro 扩展后，`.astro` 文件里有高亮和补全。
 - 想要一键部署的话，再准备一个 GitHub 账号。
 
@@ -25,17 +25,17 @@ tags:
 Astro CLI 可以直接从任意 GitHub 仓库生成项目：
 
 ```shell
-npm create astro@latest -- --template arthelokyo/astrowind
+bunx create-astro@latest --template arthelokyo/astrowind
 ```
 
 按提示填写项目目录、是否安装依赖、是否初始化 Git，然后启动：
 
 ```shell
 cd my-site
-npm run dev
+bun run dev
 ```
 
-打开 `http://localhost:4321`，看到的演示站就是你自己的代码了。如果你习惯用 bun，把安装与脚本换成 `bun install`、`bun run dev` 即可；注意 `check` 与 `fix` 两个脚本内部写死了 `npm run ...`。
+打开 `http://localhost:4321`，看到的演示站就是你自己的代码了。安装统一用 `bun install`，校验用 `bun run check`，格式化用 `bun run fix`；仓库里只有一份 `bun.lock`，不会出现两套锁文件不一致的情况。
 
 ## 目录里都有什么
 
@@ -77,8 +77,8 @@ tags:
 ## 构建与部署
 
 ```shell
-npm run build
-npm run preview
+bun run build
+bun run preview
 ```
 
 产物是 `dist/` 目录下的纯静态文件（`output: 'static'`），可以放到 Vercel、Netlify、Cloudflare Workers、GitHub Pages 或任意 nginx 容器。仓库已经备好 `vercel.json`、`netlify.toml`、`wrangler.jsonc` 与 `Dockerfile`。

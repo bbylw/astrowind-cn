@@ -1,8 +1,16 @@
 [build]
   publish = "dist"
-  command = "npm run build"
+  # Netlify's lockfile detection is documented for bun.lockb; running the install
+  # explicitly keeps bun.lock (text) projects on Bun too.
+  command = "bun install --frozen-lockfile && bun run build"
+
+[build.environment]
+  BUN_VERSION = "1.4.4"
+  NODE_VERSION = "22.23.4"
+
 [build.processing.html]
   pretty_urls = false
+
 [[headers]]
   for = "/_astro/*"
   [headers.values]

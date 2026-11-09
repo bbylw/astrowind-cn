@@ -7,7 +7,7 @@ Before writing a new widget, check `use-widgets.md`: the catalogue covers most m
 1. Create `src/components/widgets/MyWidget.astro`.
 2. Add a `MyWidget` interface to `src/types.d.ts` that extends `Omit<Headline, 'classes'>, Widget` (or only `Widget` if the section has no headline).
 3. Use the widget on a real page of the demo so it is visible and tested.
-4. Run `npm run build && npm run check` and look at the section in light and dark mode, on desktop and at 375 px.
+4. Run `bun run build && bun run check` and look at the section in light and dark mode, on desktop and at 375 px.
 
 ## Template
 
@@ -39,15 +39,13 @@ const columnsClass = getColumnsClass(columns, 'sm:grid-cols-2');
   <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
 
   <ul class:list={['grid gap-6 list-none', columnsClass]}>
-    {
-      items.map(({ title: itemTitle, description, icon }) => (
-        <li class="intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-          {icon && <Icon name={icon} class="h-8 w-8 text-primary" />}
-          {itemTitle && <h3 class="text-lg font-bold text-heading">{itemTitle}</h3>}
-          {description && <p class="mt-2 text-muted" set:html={description} />}
-        </li>
-      ))
-    }
+    {items.map(({ title: itemTitle, description, icon }) => (
+      <li class="intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+        {icon && <Icon name={icon} class="h-8 w-8 text-primary" />}
+        {itemTitle && <h3 class="text-lg font-bold text-heading">{itemTitle}</h3>}
+        {description && <p class="mt-2 text-muted" set:html={description} />}
+      </li>
+    ))}
   </ul>
 </WidgetWrapper>
 ```

@@ -48,30 +48,28 @@ const {
         ...((classes?.headline as Record<string, string>) ?? {}),
       }}
     />
-    {
-      actions && (
-        <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 mt-6">
-          {Array.isArray(actions) ? (
-            actions.map((action) => (
-              <div class="flex w-full sm:w-auto">
-                <Button
-                  {...(action || {})}
-                  class:list={[
-                    'w-full sm:mb-0 whitespace-nowrap',
-                    layout === 'banner' && action?.variant === 'primary'
-                      ? 'bg-white text-primary border-white hover:bg-white/90 hover:border-white/90 hover:text-primary dark:bg-white dark:text-primary dark:border-white'
-                      : layout === 'banner'
-                        ? 'text-white border-white/70 hover:bg-white/10 hover:border-white hover:text-white dark:text-white dark:border-white/70'
-                        : '',
-                  ]}
-                />
-              </div>
-            ))
-          ) : (
-            <Fragment set:html={actions} />
-          )}
-        </div>
-      )
-    }
+    {actions && (
+      <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 mt-6">
+        {Array.isArray(actions) ? (
+          actions.map((action) => (
+            <div class="flex w-full sm:w-auto">
+              <Button
+                {...(action || {})}
+                class:list={[
+                  'w-full sm:mb-0 whitespace-nowrap',
+                  layout === 'banner' && action?.variant === 'primary'
+                    ? 'bg-white text-primary border-white hover:bg-white/90 hover:border-white/90 hover:text-primary dark:bg-white dark:text-primary dark:border-white'
+                    : layout === 'banner'
+                      ? 'text-white border-white/70 hover:bg-white/10 hover:border-white hover:text-white dark:text-white dark:border-white/70'
+                      : '',
+                ]}
+              />
+            </div>
+          ))
+        ) : (
+          <Fragment set:html={actions} />
+        )}
+      </div>
+    )}
   </div>
 </WidgetWrapper>

@@ -23,24 +23,22 @@ const {
 } = Astro.props;
 ---
 
-{
-  !(UI.theme && UI.theme.endsWith(':only')) && (
-    <aw-theme-toggle>
-      <button type="button" class={className} aria-label={label} data-aw-toggle-color-scheme>
-        <span class:list={['relative block', iconClass]}>
-          <Icon
-            name={iconName}
-            class="absolute inset-0 h-full w-full transition-[opacity,transform] duration-200 motion-reduce:transition-none [html.dark_&]:-rotate-90 [html.dark_&]:scale-0 [html.dark_&]:opacity-0"
-          />
-          <Icon
-            name={iconNameDark}
-            class="absolute inset-0 h-full w-full rotate-90 scale-0 opacity-0 transition-[opacity,transform] duration-200 motion-reduce:transition-none [html.dark_&]:rotate-0 [html.dark_&]:scale-100 [html.dark_&]:opacity-100"
-          />
-        </span>
-      </button>
-    </aw-theme-toggle>
-  )
-}
+{!(UI.theme && UI.theme.endsWith(':only')) && (
+  <aw-theme-toggle>
+    <button type="button" class={className} aria-label={label} data-aw-toggle-color-scheme>
+      <span class:list={['relative block', iconClass]}>
+        <Icon
+          name={iconName}
+          class="absolute inset-0 h-full w-full transition-[opacity,transform] duration-200 motion-reduce:transition-none [html.dark_&]:-rotate-90 [html.dark_&]:scale-0 [html.dark_&]:opacity-0"
+        />
+        <Icon
+          name={iconNameDark}
+          class="absolute inset-0 h-full w-full rotate-90 scale-0 opacity-0 transition-[opacity,transform] duration-200 motion-reduce:transition-none [html.dark_&]:rotate-0 [html.dark_&]:scale-100 [html.dark_&]:opacity-100"
+        />
+      </span>
+    </button>
+  </aw-theme-toggle>
+)}
 
 <style>
   aw-theme-toggle {

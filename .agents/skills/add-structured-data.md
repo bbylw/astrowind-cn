@@ -29,8 +29,7 @@ const schema = {
 ---
 
 <Layout metadata={metadata}>
-  <StructuredData slot="head" schema={schema} />
-  …
+  <StructuredData slot="head" schema={schema} />…
 </Layout>
 ```
 

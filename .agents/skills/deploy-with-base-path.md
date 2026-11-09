@@ -13,7 +13,7 @@ site:
   trailingSlash: false # or true if your host requires /path/
 ```
 
-2. Build: `npm run build`. Output still goes to `dist/`; only the URLs get the prefix.
+2. Build: `bun run build`. Output still goes to `dist/`; only the URLs get the prefix.
 3. Deploy `dist/` so it is served at `/my-site/`.
 
 ## How links are built
@@ -45,7 +45,7 @@ Compare without trailing slashes, e.g. `trimSlash(a) === trimSlash(b)` (`trimSla
 ## Verify
 
 ```bash
-npm run build
+bun run build
 grep -r "/my-site/my-site" dist && echo "double prefix found"
 ```
 

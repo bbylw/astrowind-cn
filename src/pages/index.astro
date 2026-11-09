@@ -24,14 +24,16 @@ const metadata = {
 };
 
 // 站点与发布者的结构化数据，全部来自 src/config.yaml
-const organizationId = `${SITE?.site}/#organization`;
+// site.site 是 Pages 域名，base 是项目路径；结构化数据要用包含 base 的完整地址。
+const siteUrl = new URL(SITE?.base || '/', SITE?.site).toString().replace(/\/$/, '');
+const organizationId = `${siteUrl}/#organization`;
 const structuredData = [
   {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    '@id': `${SITE?.site}/#website`,
+    '@id': `${siteUrl}/#website`,
     name: SITE?.name,
-    url: SITE?.site,
+    url: siteUrl,
     description: METADATA?.description,
     inLanguage: I18N?.language,
     publisher: { '@id': organizationId },
@@ -41,8 +43,8 @@ const structuredData = [
     '@type': 'Organization',
     '@id': organizationId,
     name: SITE?.name,
-    url: SITE?.site,
-    logo: new URL(favIconSvg.src, SITE?.site).toString(),
+    url: siteUrl,
+    logo: new URL(favIconSvg.src, siteUrl).toString(),
     ...(METADATA?.twitter?.handle ? { sameAs: [`https://x.com/${METADATA.twitter.handle.replace(/^@/, '')}`] } : {}),
   },
 ];
@@ -71,8 +73,8 @@ const structuredData = [
     </Fragment>
 
     <Fragment slot="subtitle">
-      <span class="font-semibold">AstroWind</span> 是一套免费、可定制、可直接上线的开源模板。内置 30+ 可组合页面区块、 Markdown/MDX
-      博客、SEO 元信息、暗色模式与图片优化，适合创业团队、SaaS 官网、作品集、营销落地页与博客。
+      <span class="font-semibold">AstroWind</span> 是一套免费、可定制、可直接上线的开源模板。内置 30+ 可组合页面区块、
+      Markdown/MDX 博客、SEO 元信息、暗色模式与图片优化，适合创业团队、SaaS 官网、作品集、营销落地页与博客。
     </Fragment>
   </Hero>
 
@@ -100,12 +102,12 @@ const structuredData = [
     tagline="快速开始"
     title="一条命令，就是全部初始化工作"
     subtitle="不想先看特性？直接把模板跑起来，两分钟后你就能开始改内容。"
-    commands={['npm create astro@latest -- --template arthelokyo/astrowind']}
+    commands={['bunx create-astro@latest --template arthelokyo/astrowind']}
     items={[
       {
         title: '两分钟，一个终端',
         description:
-          '按提示创建项目，运行 <code>npm run dev</code>，打开 localhost:4321，看到的演示站就是你自己的代码。需要 Node.js 22.22.3 或更高版本。',
+          '按提示创建项目，运行 <code>bun install</code> 与 <code>bun run dev</code>，打开 localhost:4321，看到的演示站就是你自己的代码。需要 Bun 1.4.4 或更高版本。',
         icon: 'tabler:terminal-2',
       },
       {
@@ -123,10 +125,7 @@ const structuredData = [
     ]}
   >
     <Fragment slot="bg">
-      <div
-        class="absolute inset-0 bg-[radial-gradient(60%_55%_at_15%_20%,rgb(129_140_248/0.28),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(244_114_182/0.22),transparent_65%)] dark:bg-[radial-gradient(60%_55%_at_15%_20%,rgb(99_102_241/0.25),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(217_70_239/0.18),transparent_65%)]"
-      >
-      </div>
+      <div class="absolute inset-0 bg-[radial-gradient(60%_55%_at_15%_20%,rgb(129_140_248/0.28),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(244_114_182/0.22),transparent_65%)] dark:bg-[radial-gradient(60%_55%_at_15%_20%,rgb(99_102_241/0.25),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(217_70_239/0.18),transparent_65%)]"></div>
     </Fragment>
   </QuickStart>
 
@@ -454,7 +453,7 @@ const structuredData = [
       {
         title: '开始之前需要准备什么？',
         description:
-          'Node.js 22.22.3 或更高版本（<code>.nvmrc</code> 中已固定）和一个终端。运行 <code>npm create astro@latest -- --template arthelokyo/astrowind</code>，再 <code>npm run dev</code>。站点信息在 <code>src/config.yaml</code>，颜色字体在 <code>src/components/CustomStyles.astro</code>。',
+          'Bun 1.4.4 或更高版本（<code>packageManager</code> 中已固定）和一个终端。运行 <code>bunx create-astro@latest --template arthelokyo/astrowind</code>，再 <code>bun install</code> 与 <code>bun run dev</code>。站点信息在 <code>src/config.yaml</code>，颜色字体在 <code>src/components/CustomStyles.astro</code>。',
       },
       {
         title: '不需要博客，可以关掉吗？',
@@ -504,11 +503,15 @@ const structuredData = [
     ]}
   >
     <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
+      Astro&nbsp;+&nbsp;
+      <br class="block sm:hidden" />
+      <span class="sm:whitespace-nowrap">Tailwind CSS</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      免费、开源、生产可用。<br class="hidden md:inline" />克隆下来，换成你的内容，然后部署。
+      免费、开源、生产可用。
+      <br class="hidden md:inline" />
+      克隆下来，换成你的内容，然后部署。
     </Fragment>
   </CallToAction>
 </Layout>

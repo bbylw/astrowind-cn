@@ -47,55 +47,53 @@ const duration = `${Math.max(20, (icons.length + images.length) * 4)}s`;
     ]}
     style={isMarquee ? `--aw-marquee-duration: ${duration}` : undefined}
   >
-    {
-      [0, ...(isMarquee ? [1] : [])].map((copy) => (
-        <div
-          class:list={[
-            isMarquee ? 'aw-marquee-track flex shrink-0 items-center gap-x-12 lg:gap-x-20 pr-12 lg:pr-20' : 'contents',
-          ]}
-          aria-hidden={copy === 1 ? 'true' : undefined}
-        >
-          {icons &&
-            icons.map((icon) => (
-              <Icon name={icon} class:list={['py-3 lg:py-5 w-12 h-auto mx-auto sm:mx-0 text-gray-500', logoClass]} />
-            ))}
-          {images &&
-            images.map(
-              (image) =>
-                image.src &&
-                (image.href ? (
-                  <a
-                    href={image.href}
-                    class:list={['flex justify-center my-2 lg:my-4', boxClass]}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    tabindex={copy === 1 ? -1 : undefined}
-                  >
-                    <Image
-                      src={image.src}
-                      alt={image.alt || ''}
-                      class={logoClass}
-                      width={120}
-                      height={48}
-                      format="webp"
-                    />
-                  </a>
-                ) : (
-                  <div class:list={['flex justify-center my-2 lg:my-4', boxClass]}>
-                    <Image
-                      src={image.src}
-                      alt={image.alt || ''}
-                      class={logoClass}
-                      width={120}
-                      height={48}
-                      format="webp"
-                    />
-                  </div>
-                ))
-            )}
-        </div>
-      ))
-    }
+    {[0, ...(isMarquee ? [1] : [])].map((copy) => (
+      <div
+        class:list={[
+          isMarquee ? 'aw-marquee-track flex shrink-0 items-center gap-x-12 lg:gap-x-20 pr-12 lg:pr-20' : 'contents',
+        ]}
+        aria-hidden={copy === 1 ? 'true' : undefined}
+      >
+        {icons &&
+          icons.map((icon) => (
+            <Icon name={icon} class:list={['py-3 lg:py-5 w-12 h-auto mx-auto sm:mx-0 text-gray-500', logoClass]} />
+          ))}
+        {images &&
+          images.map(
+            (image) =>
+              image.src &&
+              (image.href ? (
+                <a
+                  href={image.href}
+                  class:list={['flex justify-center my-2 lg:my-4', boxClass]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  tabindex={copy === 1 ? -1 : undefined}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt || ''}
+                    class={logoClass}
+                    width={120}
+                    height={48}
+                    format="webp"
+                  />
+                </a>
+              ) : (
+                <div class:list={['flex justify-center my-2 lg:my-4', boxClass]}>
+                  <Image
+                    src={image.src}
+                    alt={image.alt || ''}
+                    class={logoClass}
+                    width={120}
+                    height={48}
+                    format="webp"
+                  />
+                </div>
+              ))
+          )}
+      </div>
+    ))}
   </div>
 </WidgetWrapper>
 

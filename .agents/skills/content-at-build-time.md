@@ -13,14 +13,14 @@ Blog posts are an Astro **Content Collection** (`src/content.config.ts`, `glob()
 | Approach                        | How                                                                                  |
 | ------------------------------- | ------------------------------------------------------------------------------------ |
 | Rebuild on commit (recommended) | Push posts to Git; Netlify/Vercel/Cloudflare/GitHub Actions rebuild automatically    |
-| Rebuild on demand               | Trigger `npm run build` (CI job, deploy hook or webhook from your CMS/editor)        |
-| Docker                          | Rebuild the image (or run `npm run build` in a build stage) whenever content changes |
+| Rebuild on demand               | Trigger `bun run build` (CI job, deploy hook or webhook from your CMS/editor)        |
+| Docker                          | Rebuild the image (or run `bun run build` in a build stage) whenever content changes |
 | Remote content                  | Replace the `glob()` loader with a loader that fetches from a CMS/API at build time  |
 
 ## Example: rebuild in Docker
 
 ```bash
-docker build -t my-site .        # runs npm run build inside
+docker build -t my-site .        # runs bun run build inside
 docker run -p 8080:8080 my-site
 ```
 

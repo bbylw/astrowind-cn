@@ -37,7 +37,7 @@ README 的 FAQ 甚至直接写：「问你的 AI 编程助手。」这不是营�
 
 不要只说「帮我加个页面」，把目标和校验条件一起给它：
 
-> 参考 `.agents/skills/add-page.md`，用 `src/components/widgets/` 里的现有区块做一个「客户案例」页，文案用中文，不要新增第三方依赖。完成后运行 `npm run build` 和 `npm run check`，并告诉我改了哪些文件。
+> 参考 `.agents/skills/add-page.md`，用 `src/components/widgets/` 里的现有区块做一个「客户案例」页，文案用中文，不要新增第三方依赖。完成后运行 `bun run build` 和 `bun run check`，并告诉我改了哪些文件。
 
 技能文档会把「文件放哪、用哪个布局、怎么接导航」固定下来，你审查 diff 时看到的就只是预期内的改动。
 
@@ -45,8 +45,8 @@ README 的 FAQ 甚至直接写：「问你的 AI 编程助手。」这不是营�
 
 `AGENTS.md` 的验证清单值得照抄进提示词：
 
-1. `npm run build` 通过；
-2. `npm run check` 通过（`astro check` + ESLint + Prettier）；
+1. `bun run build` 通过；
+2. `bun run check` 通过（`astro check` + ESLint + Prettier）；
 3. 浏览器里看首页、博客、暗色模式与移动端菜单；
 4. 首页的 `WebSite` / `Organization` 结构化数据只由 `config.yaml` 生成，确保上线时内容真实。
 

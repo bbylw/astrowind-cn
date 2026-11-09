@@ -40,28 +40,26 @@ const schema = {
   ]}
 >
   <ol class="flex flex-wrap items-center gap-1 list-none">
-    {
-      items.map(({ text, href, icon }, index) => (
-        <li class="flex min-w-0 items-center gap-1">
-          {index > 0 && !(hideCurrent && index === items.length - 1) && (
-            <Icon name="tabler:chevron-right" class="h-3.5 w-3.5 shrink-0 opacity-60 rtl:rotate-180" />
-          )}
-          {href && index < items.length - 1 ? (
-            <a
-              href={href}
-              class="inline-flex items-center hover:text-primary hover:underline"
-              aria-label={icon ? text : undefined}
-            >
-              {icon ? <Icon name={icon} class="h-4 w-4" /> : text}
-            </a>
-          ) : (
-            <span aria-current="page" class:list={hideCurrent ? 'sr-only' : 'text-default'}>
-              {text}
-            </span>
-          )}
-        </li>
-      ))
-    }
+    {items.map(({ text, href, icon }, index) => (
+      <li class="flex min-w-0 items-center gap-1">
+        {index > 0 && !(hideCurrent && index === items.length - 1) && (
+          <Icon name="tabler:chevron-right" class="h-3.5 w-3.5 shrink-0 opacity-60 rtl:rotate-180" />
+        )}
+        {href && index < items.length - 1 ? (
+          <a
+            href={href}
+            class="inline-flex items-center hover:text-primary hover:underline"
+            aria-label={icon ? text : undefined}
+          >
+            {icon ? <Icon name={icon} class="h-4 w-4" /> : text}
+          </a>
+        ) : (
+          <span aria-current="page" class:list={hideCurrent ? 'sr-only' : 'text-default'}>
+            {text}
+          </span>
+        )}
+      </li>
+    ))}
   </ol>
 </nav>
 

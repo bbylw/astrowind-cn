@@ -2,9 +2,15 @@
 
 ## Project Overview
 
-AstroWind is a free, open-source website template built with **Astro v7** and **Tailwind CSS v4**. It generates a fully static site optimized for performance, SEO, and accessibility.
+AstroWind is a free, open-source website template built with **Astro v7** and **Tailwind CSS v4**. It generates a fully static site optimized for performance, SEO, and accessibility. This checkout is the Chinese introduction site.
 
-**Stack:** Astro v7 | Tailwind CSS v4 | TypeScript 5.9 | MDX | Sharp
+**Stack:** Astro v7.4 | Tailwind CSS v4.3 | TypeScript 6.0 | MDX | Sharp | Bun 1.4.4
+
+## Package Manager
+
+The project uses **Bun only**. `bun.lock` is the single tracked lockfile; `package-lock.json`, pnpm and yarn lockfiles are not used. CI, Docker and all deploy targets run `bun install --frozen-lockfile`.
+
+Every script invokes its CLI through `bunx --bun` so the tool runs on Bun's runtime (Bun reports a Node-compatible version above Astro's >=22.23.4 floor). Do not replace these with plain `astro`/`eslint` calls: `bun --bun astro` resolves the package.json script named `astro` and recurses.
 
 ## Skills
 
@@ -14,13 +20,14 @@ Before implementing a project-specific task (disabling the blog, Open Graph imag
 
 | Command           | Purpose                             |
 | ----------------- | ----------------------------------- |
-| `npm run dev`     | Start dev server at localhost:4321  |
-| `npm run build`   | Production build to `./dist/`       |
-| `npm run preview` | Preview production build locally    |
-| `npm run check`   | Run astro check + ESLint + Prettier |
-| `npm run fix`     | Auto-fix ESLint + Prettier issues   |
+| `bun install`     | Install dependencies                |
+| `bun run dev`     | Start dev server at localhost:4321  |
+| `bun run build`   | Production build to `./dist/`       |
+| `bun run preview` | Preview production build locally    |
+| `bun run check`   | Run astro check + ESLint + Prettier |
+| `bun run fix`     | Auto-fix ESLint + Prettier issues   |
 
-**Node.js requirement:** >= 22.22.3
+**Runtime:** Bun >= 1.4.4 (`packageManager` in `package.json`). Node.js >= 22.23.4 is required only when Astro's CLI is executed through Node directly.
 
 ## Architecture
 
@@ -57,7 +64,7 @@ import { SITE } from 'astrowind:config';
 
 ### Configuration System
 
-Site config lives in `src/config.yaml` and is loaded as a Vite virtual module `astrowind:config` by the custom integration in `vendor/integration/`. Exports: `SITE`, `I18N`, `METADATA`, `APP_BLOG`, `UI`, `ANALYTICS`.
+Site config lives in `src/config.yaml` and is loaded as a Vite virtual module `astrowind:config` by the custom integration in `vendor/integration/`. Exports: `SITE`, `I18N`, `METADATA`, `APP_BLOG`, `UI`, `ANALYTICS`. `js-yaml` v5 is ESM-only, so import `{ load }` (no default export).
 
 ## Tailwind CSS v4
 
@@ -69,7 +76,7 @@ Configuration is CSS-first in `src/assets/styles/tailwind.css`:
 - **Plugins:** `@plugin "@tailwindcss/typography"`
 - **Custom variant:** `@custom-variant intersect (&:not([no-intersect]))`
 
-CSS variables for colors/fonts are defined in `src/components/CustomStyles.astro` with light/dark theme variants.
+CSS variables for colors/fonts are defined in `src/components/CustomStyles.astro` with light/dark theme variants (including CJK font fallbacks).
 
 The Vite plugin `@tailwindcss/vite` is configured in `astro.config.ts` (not as an Astro integration).
 
@@ -117,7 +124,7 @@ Astro's native CSP is intentionally **not** enabled in this version: it is incom
 
 After changes, always verify:
 
-1. `npm run build` succeeds
-2. `npm run check` passes (astro check + ESLint + Prettier)
+1. `bun run build` succeeds
+2. `bun run check` passes (astro check + ESLint + Prettier)
 3. Visual check in browser: homepage, blog, dark mode, mobile menu
 4. Structured data describes the site it is on: the `WebSite` / `Organization` block in `src/pages/index.astro` is built only from `config.yaml`; anything you add there must be true for your site

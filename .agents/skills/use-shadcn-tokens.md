@@ -21,9 +21,9 @@ If you want the exact shadcn semantics for `secondary`/`accent`/`muted`, rename 
 
 shadcn/ui components are React; AstroWind ships no framework by default.
 
-1. `npx astro add react`
-2. `npx shadcn@latest init` — choose Tailwind v4, CSS variables, and point `tailwind.css` to `src/assets/styles/tailwind.css` in `components.json`. **Do not** let it overwrite that file; the variables are already provided by `shadcn.css`.
-3. `npx shadcn@latest add button card` (etc.). Components land in `src/components/ui/` by default; consider `src/components/shadcn/` to keep them apart from AstroWind's own `ui/` primitives.
+1. `bunx astro add react`
+2. `bunx shadcn@latest init` — choose Tailwind v4, CSS variables, and point `tailwind.css` to `src/assets/styles/tailwind.css` in `components.json`. **Do not** let it overwrite that file; the variables are already provided by `shadcn.css`.
+3. `bunx shadcn@latest add button card` (etc.). Components land in `src/components/ui/` by default; consider `src/components/shadcn/` to keep them apart from AstroWind's own `ui/` primitives.
 4. Use them in `.astro` files with a client directive when interactive: `<Button client:load>…</Button>`.
 
 Astro-native ports of the shadcn design (e.g. Starwind, Basecoat) work with the same variables and need no React.
@@ -34,5 +34,5 @@ Edit `src/assets/styles/shadcn.css`. Keep values as `var(--aw-*)` or `color-mix(
 
 ## Notes
 
-- Build and check with `npm run build && npm run check`; a token typo shows up as a missing utility at build time.
+- Build and check with `bun run build && bun run check`; a token typo shows up as a missing utility at build time.
 - The layer adds ~2 KB of CSS and no runtime cost.

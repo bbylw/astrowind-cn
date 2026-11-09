@@ -77,4 +77,4 @@ Images accept `{ src, alt }` where `src` is a local import (`~/assets/images/...
 - Pass real `alt` text and keep one `<h1>` per page (the hero); widgets render `<h2>`/`<h3>`.
 - Prefer `href` on items over a separate button when a card is the thing to click.
 - Sections that ask for something (`Contact`, `Newsletter`) come right after the proof that earns it.
-- Run `npm run check` after editing props: the types catch misspelled or missing props.
+- Run `bun run check` after editing props: the types catch misspelled or missing props.

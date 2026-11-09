@@ -10,37 +10,69 @@
 - `src/components/CustomStyles.astro`：补充中文系统字体回退。
 - 删除与「介绍 AstroWind」无关的英文演示页（`about`、`services`、`pricing`、`contact`、`homes/*`、`landing/*`），站点收敛为首页 + 中文博客。
 - 组件里残留的英文 UI（返回博客、相关文章、分页、分享、主题切换等）改为中文。
+- 包管理器全面迁移到 **Bun**，依赖升级到当前最新兼容版本。
 
-原有的组件、配置系统、内容集合、图片管线与部署配置保持不变。
+原有的组件、配置系统、内容集合与图片管线保持不变。
+
+## 技术栈与版本
+
+| 类别                            | 版本                               |
+| ------------------------------- | ---------------------------------- |
+| 包管理器 / 运行时               | Bun 1.4.4（`packageManager` 固定） |
+| Astro                           | 7.4.7                              |
+| Tailwind CSS                    | 4.3.5                              |
+| TypeScript                      | 6.0.3                              |
+| MDX / markdown-remark           | 8.1.3 / 7.3.6                      |
+| ESLint / Prettier               | 10.14.0 / 3.9.10                   |
+| js-yaml / prettier-plugin-astro | 5.5.0 / 1.1.2                      |
+| Sharp                           | 0.35.5                             |
+
+> TypeScript 最新版是 7.0.2，但 `@astrojs/check` 与 `typescript-eslint` 尚未支持 TS 7 API，因此采用它们支持的最高版本 6.0.3。
+> `js-yaml` 5 为纯 ESM，`vendor/integration/utils/loadConfig.ts` 使用具名导入 `{ load }`。
 
 ## 本地运行
 
-需要 Node.js **22.22.3+**。本项目使用 bun：
+需要 **Bun >= 1.4.4**。Node.js >= 22.23.4 只是 Astro CLI 的兼容下限；所有脚本都通过 `bunx --bun` 强制使用 Bun 运行时，因此不依赖系统 Node 版本。
 
 ```shell
-bun install
+bun install --frozen-lockfile
 bun run dev       # http://localhost:4321
 bun run build     # 输出到 dist/
 bun run preview
 ```
 
-校验命令：
+校验与格式化：
 
 ```shell
-bunx astro check
-bunx eslint .
-bunx prettier --check .
+bun run check     # astro check + ESLint + Prettier
+bun run fix       # ESLint --fix + Prettier -w
 ```
 
-> 注意：`package.json` 里的 `check` / `fix` 脚本内部写死了 `npm run ...`，用 `bun run check` 时仍会调用 npm。也可直接用 `bunx prettier -w .` 格式化。
+> 不要把这些脚本改回 `bun --bun astro ...`：bun 会把它解析成同名的 `astro` 脚本并无限递归。`bunx --bun` 才是走二进制解析。
+
+## 锁文件与部署
+
+`bun.lock` 是仓库里**唯一**的锁文件，`package-lock.json`、pnpm / yarn 锁文件都已移除并加入 `.gitignore`。CI、Docker 与各部署平台统一使用：
+
+```shell
+bun install --frozen-lockfile
+bun run build
+```
+
+- **GitHub Pages（本站实际部署方式）**：`.github/workflows/deploy-pages.yml` 在 push 到 `main` 时用 Bun 构建并上传 `dist/`，再由 `actions/deploy-pages` 发布。站点地址 <https://bbylw.github.io/astrowind-cn/>，Pages 的 Source 需设为 **GitHub Actions**。
+- GitHub Actions（CI）：`.github/workflows/actions.yaml`，`oven-sh/setup-bun@v2` + Node 22.23.4，缓存 `~/.bun/install/cache`。
+- Docker：`oven/bun:1.4.4-alpine` 多阶段构建，最终由 nginx 提供 `dist/`。
+- Vercel：`installCommand` / `buildCommand` 显式指定 bun。
+- Netlify：`BUN_VERSION=1.4.4`，构建命令显式执行 bun（其文档只对 `bun.lockb` 做自动检测）。
+- Cloudflare Workers：在 Workers Builds 里把安装命令设为 `bun install --frozen-lockfile`、构建命令设为 `bun run build`。
+
+> 例外：`.stackblitzrc` 与 `sandbox.config.json` 仍使用平台自带的 npm，这两个在线 IDE 由平台管理运行时；本站 README 不再链接它们。
 
 ## 上线前必改
 
-- `src/config.yaml` 的 `site.site`：目前是 `https://example.com` 占位域名，会影响 canonical、sitemap、OG 与结构化数据。
+- `src/config.yaml` 已按 GitHub Pages 项目页设为 `site: 'https://bbylw.github.io'` + `base: '/astrowind-cn'`。换域名或改成根路径站点时，必须同时改这两项，否则资源链接会 404；`trailingSlash` 保持 `false`（改成 `true` 会给 `#anchor` 链接追加尾斜杠）。
 - 如需 Google Search Console / GA，填写 `googleSiteVerificationId` 与 `analytics.vendors.googleAnalytics.id`。
-- `public/robots.txt` 构建时会由模板自动更新 sitemap 地址。
-
-部署产物是 `dist/` 纯静态文件，`vercel.json`、`netlify.toml`、`wrangler.jsonc`、`Dockerfile` 已备好。
+- `public/robots.txt` 构建时会由模板自动更新 sitemap 地址（会自动带上 base）。
 
 ## 目录速查
 

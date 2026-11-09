@@ -57,4 +57,4 @@ import FAQs from '~/components/widgets/FAQs.astro';
 
 ## 上线前检查
 
-跑一遍 `npm run build` 与 `npm run check`，然后在手机宽度下看首屏按钮是否还在首屏内、暗色模式下文字是否可读、FAQ 折叠是否正常。模板自带视口预取与视图过渡，落地页之间切换通常不需要额外优化。
+跑一遍 `bun run build` 与 `bun run check`，然后在手机宽度下看首屏按钮是否还在首屏内、暗色模式下文字是否可读、FAQ 折叠是否正常。模板自带视口预取与视图过渡，落地页之间切换通常不需要额外优化。

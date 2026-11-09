@@ -2,7 +2,7 @@ import { getRssString } from '@astrojs/rss';
 
 import { SITE, METADATA, APP_BLOG, I18N } from 'astrowind:config';
 import { fetchPosts } from '~/utils/blog';
-import { getPermalink } from '~/utils/permalinks';
+import { getAsset, getPermalink } from '~/utils/permalinks';
 
 // 订阅源由构建期的内容集合生成，即使项目切换到按需渲染也要保持预渲染。
 export const prerender = true;
@@ -36,7 +36,7 @@ export const GET = async () => {
     customData: [
       `<language>${I18N?.language || 'zh-CN'}</language>`,
       `<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>`,
-      `<atom:link href="${new URL(getPermalink('rss.xml', 'asset'), import.meta.env.SITE)}" rel="self" type="application/rss+xml" />`,
+      `<atom:link href="${new URL(getAsset('/rss.xml'), import.meta.env.SITE)}" rel="self" type="application/rss+xml" />`,
     ].join(''),
   });
 

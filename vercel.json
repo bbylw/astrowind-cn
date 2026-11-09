@@ -1,4 +1,7 @@
 {
+  "framework": "astro",
+  "installCommand": "bun install --frozen-lockfile",
+  "buildCommand": "bun run build",
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
