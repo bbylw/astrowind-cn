@@ -55,7 +55,7 @@ bun run dev
 1. 打开 `src/config.yaml`，把 `site.name`、`site.site`、`metadata.description` 改成你的站点信息。`site.site` 会影响 canonical、sitemap 与结构化数据，部署前一定要换成真实域名。
 2. 编辑 `src/navigation.ts`，把演示菜单换成你的栏目。
 3. 首页 `src/pages/index.astro` 是一组 widget 的调用，改文案、换顺序、删掉不需要的区块即可。
-4. 想调整视觉，看[定制颜色、字体与 Logo](/how-to-customize-astrowind-to-your-brand)。
+4. 想调整视觉，看[定制颜色、字体与 Logo](/astrowind-cn/how-to-customize-astrowind-to-your-brand)。
 
 ## 写第一篇文章
 
@@ -83,4 +83,4 @@ bun run preview
 
 产物是 `dist/` 目录下的纯静态文件（`output: 'static'`），可以放到 Vercel、Netlify、Cloudflare Workers、GitHub Pages 或任意 nginx 容器。仓库已经备好 `vercel.json`、`netlify.toml`、`wrangler.jsonc` 与 `Dockerfile`。
 
-想更深入理解模板的运作方式，继续读[模板原理拆解](/astrowind-template-in-depth)；想让 AI 帮你改，看[用 AI 助手改造模板](/build-websites-with-ai)。
+想更深入理解模板的运作方式，继续读[模板原理拆解](/astrowind-cn/astrowind-template-in-depth)；想让 AI 帮你改，看[用 AI 助手改造模板](/astrowind-cn/build-websites-with-ai)。

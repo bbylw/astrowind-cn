@@ -12,7 +12,7 @@ tags:
   - astro
 ---
 
-AstroWind 的演示站是蓝色主题、Inter 字体、满屏 "AstroWind" 字样。把它变成你的品牌并不需要改组件源码，只要按下面顺序处理几个文件。还没创建项目的话，先看[从零开始](/get-started-website-with-astro-tailwind-css)。
+AstroWind 的演示站是蓝色主题、Inter 字体、满屏 "AstroWind" 字样。把它变成你的品牌并不需要改组件源码，只要按下面顺序处理几个文件。还没创建项目的话，先看[从零开始](/astrowind-cn/get-started-website-with-astro-tailwind-css)。
 
 ## 1. 站点信息：`src/config.yaml`
 

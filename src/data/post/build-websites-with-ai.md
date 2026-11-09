@@ -50,4 +50,4 @@ README 的 FAQ 甚至直接写：「问你的 AI 编程助手。」这不是营�
 3. 浏览器里看首页、博客、暗色模式与移动端菜单；
 4. 首页的 `WebSite` / `Organization` 结构化数据只由 `config.yaml` 生成，确保上线时内容真实。
 
-顺带一提：本站本身就是一次「AI 改造模板」的实践——把演示站的英文文案全部换成介绍 AstroWind 的中文内容，同时保留原有组件与构建链路。想了解改了哪些地方，看[模板原理拆解](/astrowind-template-in-depth)与[定制品牌外观](/how-to-customize-astrowind-to-your-brand)。
+顺带一提：本站本身就是一次「AI 改造模板」的实践——把演示站的英文文案全部换成介绍 AstroWind 的中文内容，同时保留原有组件与构建链路。想了解改了哪些地方，看[模板原理拆解](/astrowind-cn/astrowind-template-in-depth)与[定制品牌外观](/astrowind-cn/how-to-customize-astrowind-to-your-brand)。
