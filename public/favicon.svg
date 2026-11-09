@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">AstroWind 中文站</title>
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1B2A63" />
+      <stop offset="0.55" stop-color="#0C1434" />
+      <stop offset="1" stop-color="#05091B" />
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.30" />
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.02" />
+    </linearGradient>
+    <linearGradient id="star" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8DE8FF" />
+      <stop offset="0.45" stop-color="#4B8CFF" />
+      <stop offset="1" stop-color="#B47BFF" />
+    </linearGradient>
+    <linearGradient id="wind" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4B8CFF" stop-opacity="0" />
+      <stop offset="0.30" stop-color="#63A8FF" stop-opacity="0.9" />
+      <stop offset="0.72" stop-color="#A986FF" stop-opacity="0.75" />
+      <stop offset="1" stop-color="#C08BFF" stop-opacity="0" />
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4B8CFF" stop-opacity="0.42" />
+      <stop offset="1" stop-color="#4B8CFF" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect x="2" y="2" width="124" height="124" rx="30" fill="url(#tile)" />
+  <rect x="2.75" y="2.75" width="122.5" height="122.5" rx="29.25" fill="none" stroke="url(#edge)" stroke-width="1.5" />
+
+  <circle cx="62" cy="56" r="42" fill="url(#halo)" />
+
+  <path d="M14 98 C36 110 80 107 112 74" fill="none" stroke="url(#wind)" stroke-width="6" stroke-linecap="round" />
+  <path d="M22 78 C42 90 78 89 108 62" fill="none" stroke="url(#wind)" stroke-width="2.5" stroke-linecap="round" opacity="0.62" />
+
+  <path d="M62 24 C64.5 43.5 74.5 53.5 94 56 C74.5 58.5 64.5 68.5 62 88 C59.5 68.5 49.5 58.5 30 56 C49.5 53.5 59.5 43.5 62 24 Z" fill="url(#star)" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1.2" />
+  <path d="M62 41 C63 49.8 68.2 55 77 56 C68.2 57 63 62.2 62 71 C61 62.2 55.8 57 47 56 C55.8 55 61 49.8 62 41 Z" fill="#ffffff" opacity="0.55" />
+
+  <path d="M100 26 C100.9 33 105 37.1 112 38 C105 38.9 100.9 43 100 50 C99.1 43 95 38.9 88 38 C95 37.1 99.1 33 100 26 Z" fill="#E2EEFF" opacity="0.92" />
+</svg>
