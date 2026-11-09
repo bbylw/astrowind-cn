@@ -24,8 +24,11 @@ const {
     {title && (
       <h2
         class={twMerge(
-          'font-bold leading-tighter tracking-tighter font-heading text-heading text-3xl text-balance',
-          titleClass
+          'font-bold tracking-tighter font-heading text-heading text-3xl break-keep',
+          titleClass,
+          // 行高放在最后：tailwind-merge 中 font-size 会清掉先前的 leading，
+          // 而中文标题需要比 Latin 更松的 1.14 行距。
+          'leading-[1.14]'
         )}
         set:html={title}
       />

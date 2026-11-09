@@ -26,7 +26,7 @@ const {
 const alternate = layout === 'alternate';
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
 
   <ol class:list={['relative list-none', alternate ? 'lg:grid lg:grid-cols-2' : 'max-w-3xl mx-auto']}>

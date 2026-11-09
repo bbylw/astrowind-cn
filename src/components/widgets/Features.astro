@@ -23,14 +23,14 @@ const {
 const columnsClass = getColumnsClass(columns);
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl ${classes?.container ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
 
   {items.length > 0 && (
     <div class:list={['grid mx-auto gap-8 md:gap-y-12', columnsClass]}>
       {items.map(({ title: itemTitle, description, icon, callToAction }) => (
         <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-          <div class="flex flex-row max-w-md">
+          <div class="flex flex-row max-w-lg">
             {(icon || defaultIcon) && (
               <div class="flex justify-center">
                 <Icon

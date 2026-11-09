@@ -2,7 +2,6 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
-import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import QuickStart from '~/components/widgets/QuickStart.astro';
 import Features2 from '~/components/widgets/Features2.astro';
@@ -69,7 +68,8 @@ const structuredData = [
     image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind 模板首页示意图' }}
   >
     <Fragment slot="title">
-      用 <span class="text-accent dark:text-white">Astro v7</span> + Tailwind CSS v4 搭网站的免费模板
+      用 <span class="text-accent dark:text-white">Astro v7</span> +
+      <span class="whitespace-nowrap">Tailwind CSS v4</span> 搭网站的免费模板
     </Fragment>
 
     <Fragment slot="subtitle">
@@ -125,7 +125,7 @@ const structuredData = [
     ]}
   >
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-[radial-gradient(60%_55%_at_15%_20%,rgb(129_140_248/0.28),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(244_114_182/0.22),transparent_65%)] dark:bg-[radial-gradient(60%_55%_at_15%_20%,rgb(99_102_241/0.25),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(217_70_239/0.18),transparent_65%)]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(60%_55%_at_15%_20%,rgb(129_140_248/0.28),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(244_114_182/0.22),transparent_65%)] [mask-image:linear-gradient(to_bottom,transparent,#000_14%,#000_86%,transparent)] dark:bg-[radial-gradient(60%_55%_at_15%_20%,rgb(99_102_241/0.25),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(217_70_239/0.18),transparent_65%)]"></div>
     </Fragment>
   </QuickStart>
 
@@ -194,6 +194,7 @@ const structuredData = [
     image={{
       src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       alt: '团队协作开发网站',
+      aspect: '4/3',
     }}
   >
     <Fragment slot="content">
@@ -231,13 +232,10 @@ const structuredData = [
     image={{
       src: 'https://images.unsplash.com/photo-1616674282942-2835e62d612e?auto=format&fit=crop&w=1600&q=80',
       alt: '桌面上的网站线框图',
+      aspect: '4/3',
     }}
   >
     <Fragment slot="content">让站点真正长成你自己的样子。</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
   </Content>
 
   <!-- 效率 -->
@@ -266,13 +264,10 @@ const structuredData = [
     image={{
       src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       alt: '开发工作流示意',
+      aspect: '4/3',
     }}
   >
     <Fragment slot="content">把时间留给内容，而不是脚手架。</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
   </Content>
 
   <!-- 上手步骤 -->
@@ -421,8 +416,6 @@ const structuredData = [
       { icon: 'tabler:dots', ghost: true },
     ]}
   />
-
-  <Note title="设计理念：" description="简洁 · 最佳实践 · 高性能" />
 
   <!-- 中文文章 -->
   <BlogHighlightedPosts
