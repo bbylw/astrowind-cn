@@ -27,6 +27,7 @@ pnpm-workspace.yaml
 yarn.lock
 
 # WorkBuddy local session notes
+.workbuddy/
 .workbuddy-ai/
 
 .astro
